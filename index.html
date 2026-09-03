@@ -1,0 +1,11 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DADY CLOTHES</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div style="background:#ff1493;color:#fff;text-align:center;padding:10px;font-weight:700">DADY CLOTHES • Browser Preview Mode — Products, Cart & COD Demo</div><div class="top">🔥 FREE SHIPPING ON ORDERS ABOVE ₹999 | CASH ON DELIVERY AVAILABLE 🚚</div>
+<header><a class="logo" href="/">♧ <b>DADY<br><small>CLOTHES</small></b></a><nav><a href="#home">HOME</a><a href="#shop">SHOP</a><a href="#categories">CATEGORIES</a><a href="#new">NEW ARRIVALS</a><a href="/admin">ADMIN</a></nav><button class="cartbtn" onclick="openCart()">🛍️ <i id="count">0</i></button></header>
+<section id="home" class="hero"><div><em>New Collection</em><h1>FASHION THAT<br><strong>DEFINES YOU</strong></h1><p>Trendy clothes, premium quality<br>& best prices — only at <b>Dady Clothes.</b></p><a href="#shop" class="btn">SHOP NOW →</a></div><div class="model">DADY<br><span>STREETWEAR</span></div><aside>🚚<b>FREE SHIPPING</b><small>Above ₹999</small><br>🏅<b>BEST QUALITY</b><small>Premium Fabric</small><br>↻<b>EASY RETURNS</b><small>7 Days</small></aside></section>
+<section id="categories" class="cats"><h2>SHOP BY CATEGORY</h2><div id="cat"></div></section>
+<section id="shop" class="shop"><div class="head"><h2 id="new">NEW ARRIVALS</h2><button onclick="loadProducts()">VIEW ALL →</button></div><div id="grid"></div></section>
+<footer><b>DADY CLOTHES</b><span>Premium streetwear • Cash on Delivery • Secure checkout</span><span>support@dadyclothes.com</span></footer>
+<div id="drawer"><button onclick="closeCart()">×</button><h2>Your Cart</h2><div id="items"></div><h3>Total ₹<span id="total">0</span></h3><button class="btn" onclick="checkout()">PLACE COD ORDER</button></div>
+<div id="checkout" class="modal"><div><button onclick="hideCheckout()">×</button><h2>Cash on Delivery</h2><input id="name" placeholder="Full name"><input id="phone" placeholder="Mobile number"><textarea id="address" placeholder="Full delivery address"></textarea><input id="pin" placeholder="Pincode"><button class="btn" onclick="placeOrder()">CONFIRM ORDER</button><p id="msg"></p></div></div>
+<script src="app.js"></script></body></html>
