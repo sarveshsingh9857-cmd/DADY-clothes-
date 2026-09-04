@@ -1,11 +1,274 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DADY CLOTHES</title><link rel="stylesheet" href="style.css"></head>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DADY CLOTHES</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
 <body>
-<div style="background:#ff1493;color:#fff;text-align:center;padding:10px;font-weight:700">DADY CLOTHES • Browser Preview Mode — Products, Cart & COD Demo</div><div class="top">🔥 FREE SHIPPING ON ORDERS ABOVE ₹999 | CASH ON DELIVERY AVAILABLE 🚚</div>
-<header><a class="logo" href="/">♧ <b>DADY<br><small>CLOTHES</small></b></a><nav><a href="#home">HOME</a><a href="#shop">SHOP</a><a href="#categories">CATEGORIES</a><a href="#new">NEW ARRIVALS</a><a href="/admin">ADMIN</a></nav><button class="cartbtn" onclick="openCart()">🛍️ <i id="count">0</i></button></header>
-<section id="home" class="hero"><div><em>New Collection</em><h1>FASHION THAT<br><strong>DEFINES YOU</strong></h1><p>Trendy clothes, premium quality<br>& best prices — only at <b>Dady Clothes.</b></p><a href="#shop" class="btn">SHOP NOW →</a></div><div class="model">DADY<br><span>STREETWEAR</span></div><aside>🚚<b>FREE SHIPPING</b><small>Above ₹999</small><br>🏅<b>BEST QUALITY</b><small>Premium Fabric</small><br>↻<b>EASY RETURNS</b><small>7 Days</small></aside></section>
-<section id="categories" class="cats"><h2>SHOP BY CATEGORY</h2><div id="cat"></div></section>
-<section id="shop" class="shop"><div class="head"><h2 id="new">NEW ARRIVALS</h2><button onclick="loadProducts()">VIEW ALL →</button></div><div id="grid"></div></section>
-<footer><b>DADY CLOTHES</b><span>Premium streetwear • Cash on Delivery • Secure checkout</span><span>support@dadyclothes.com</span></footer>
-<div id="drawer"><button onclick="closeCart()">×</button><h2>Your Cart</h2><div id="items"></div><h3>Total ₹<span id="total">0</span></h3><button class="btn" onclick="checkout()">PLACE COD ORDER</button></div>
-<div id="checkout" class="modal"><div><button onclick="hideCheckout()">×</button><h2>Cash on Delivery</h2><input id="name" placeholder="Full name"><input id="phone" placeholder="Mobile number"><textarea id="address" placeholder="Full delivery address"></textarea><input id="pin" placeholder="Pincode"><button class="btn" onclick="placeOrder()">CONFIRM ORDER</button><p id="msg"></p></div></div>
-<script src="app.js"></script></body></html>
+
+<div style="background:#ff1493;color:#fff;text-align:center;padding:10px;font-weight:700">
+  DADY CLOTHES • Premium Streetwear
+</div>
+
+<div class="top">
+  🔥 FREE SHIPPING ON ORDERS ABOVE ₹999 | CASH ON DELIVERY AVAILABLE 🚚
+</div>
+
+<header>
+
+  <a class="logo" href="#home">
+    ♧ <b>DADY<br><small>CLOTHES</small></b>
+  </a>
+
+  <nav>
+    <a href="#home">HOME</a>
+    <a href="#shop">SHOP</a>
+    <a href="#categories">CATEGORIES</a>
+    <a href="#new">NEW ARRIVALS</a>
+  </nav>
+
+  <button class="cartbtn" onclick="openCart()">
+    🛍️ <i id="count">0</i>
+  </button>
+
+</header>
+
+<!-- HERO -->
+
+<section id="home" class="hero">
+
+  <div>
+    <em>New Collection</em>
+
+    <h1>
+      FASHION THAT<br>
+      <strong>DEFINES YOU</strong>
+    </h1>
+
+    <p>
+      Trendy clothes, premium quality<br>
+      & best prices — only at <b>Dady Clothes.</b>
+    </p>
+
+    <a href="#shop" class="btn">
+      SHOP NOW →
+    </a>
+  </div>
+
+  <div class="model">
+    DADY
+    <span>STREETWEAR</span>
+  </div>
+
+  <aside>
+    🚚
+    <b>FREE SHIPPING</b>
+    <small>Above ₹999</small>
+
+    🏅
+    <b>BEST QUALITY</b>
+    <small>Premium Fabric</small>
+
+    ↻
+    <b>EASY RETURNS</b>
+    <small>7 Days</small>
+  </aside>
+
+</section>
+
+<!-- CATEGORIES -->
+
+<section id="categories" class="cats">
+
+  <h2>SHOP BY CATEGORY</h2>
+
+  <div id="cat"></div>
+
+</section>
+
+<!-- SHOP -->
+
+<section id="shop" class="shop">
+
+  <div class="head">
+
+    <h2 id="new">
+      NEW ARRIVALS
+    </h2>
+
+    <button onclick="loadProducts()">
+      VIEW ALL →
+    </button>
+
+  </div>
+
+  <!-- SEARCH -->
+
+  <div class="search-box">
+
+    <input
+      id="searchInput"
+      type="search"
+      placeholder="🔎 Search products..."
+      oninput="searchProducts()"
+    >
+
+  </div>
+
+  <!-- PRODUCTS -->
+
+  <div id="grid"></div>
+
+</section>
+
+<!-- PRODUCT DETAILS MODAL -->
+
+<div id="productModal" class="modal">
+
+  <div>
+
+    <button onclick="closeProduct()">
+      ×
+    </button>
+
+    <img id="detailImage" src="" alt="Product">
+
+    <div class="detail-content">
+
+      <small id="detailCategory"></small>
+
+      <h2 id="detailName"></h2>
+
+      <p>
+        <b id="detailPrice"></b>
+        <del id="detailOldPrice"></del>
+      </p>
+
+      <p id="detailDescription">
+        Premium quality fabric with a comfortable
+        streetwear fit. Perfect for everyday style.
+      </p>
+
+      <label>
+        Select Size
+      </label>
+
+      <select id="detailSize">
+
+        <option value="S">S</option>
+        <option value="M" selected>M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+
+      </select>
+
+      <button
+        class="btn"
+        id="detailAddButton"
+      >
+        ADD TO CART
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- CART -->
+
+<div id="drawer">
+
+  <button onclick="closeCart()">
+    ×
+  </button>
+
+  <h2>
+    Your Cart
+  </h2>
+
+  <div id="items"></div>
+
+  <h3>
+    Total ₹<span id="total">0</span>
+  </h3>
+
+  <button
+    class="btn"
+    onclick="checkout()"
+  >
+    PLACE COD ORDER
+  </button>
+
+</div>
+
+<!-- CHECKOUT -->
+
+<div id="checkout" class="modal">
+
+  <div>
+
+    <button onclick="hideCheckout()">
+      ×
+    </button>
+
+    <h2>
+      Cash on Delivery
+    </h2>
+
+    <input
+      id="name"
+      placeholder="Full name"
+    >
+
+    <input
+      id="phone"
+      placeholder="Mobile number"
+      type="tel"
+    >
+
+    <textarea
+      id="address"
+      placeholder="Full delivery address"
+    ></textarea>
+
+    <input
+      id="pin"
+      placeholder="Pincode"
+      type="number"
+    >
+
+    <button
+      class="btn"
+      onclick="placeOrder()"
+    >
+      CONFIRM ORDER
+    </button>
+
+    <p id="msg"></p>
+
+  </div>
+
+</div>
+
+<footer>
+
+  <b>DADY CLOTHES</b>
+
+  <span>
+    Premium streetwear • Cash on Delivery
+  </span>
+
+  <span>
+    support@dadyclothes.com
+  </span>
+
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+  </html>
