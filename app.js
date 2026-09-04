@@ -51,27 +51,64 @@ const products = [
 
 let cart = JSON.parse(localStorage.getItem("dady_cart") || "[]");
 
+/* PRODUCTS */
+
 function loadProducts(list = products) {
   const grid = document.getElementById("grid");
   if (!grid) return;
 
-  grid.innerHTML = list.map(p => `
+  grid.innerHTML = list.map(product => `
     <article class="product">
-      <img src="${p.image}" alt="${p.name}">
+      <img src="${product.image}" alt="${product.name}">
       <div class="product-info">
-        <small>${p.category}</small>
-        <h3>${p.name}</h3>
+        <small>${product.category}</small>
+        <h3>${product.name}</h3>
+
         <p>
-          <b>₹${p.price}</b>
-          <del>₹${p.oldPrice}</del>
+          <b>₹${product.price}</b>
+          <del>₹${product.oldPrice}</del>
         </p>
-        <button class="btn" onclick="addToCart(${p.id})">
+
+        <button class="btn" onclick="addToCart(${product.id})">
           ADD TO CART
         </button>
       </div>
     </article>
   `).join("");
 }
+
+/* CATEGORIES */
+
+function createCategories() {
+  const cat = document.getElementById("cat");
+  if (!cat) return;
+
+  const categories = ["All", ...new Set(products.map(p => p.category))];
+
+  cat.innerHTML = categories.map(category => `
+    <button onclick="filterCategory('${category}')">
+      ${category}
+    </button>
+  `).join("");
+}
+
+function filterCategory(category) {
+  if (category === "All") {
+    loadProducts(products);
+  } else {
+    const filtered = products.filter(
+      product => product.category === category
+    );
+
+    loadProducts(filtered);
+  }
+
+  document.getElementById("shop").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+/* CART */
 
 function addToCart(id) {
   const product = products.find(p => p.id === id);
@@ -82,7 +119,10 @@ function addToCart(id) {
   if (existing) {
     existing.qty++;
   } else {
-    cart.push({...product, qty: 1});
+    cart.push({
+      ...product,
+      qty: 1
+    });
   }
 
   saveCart();
@@ -90,7 +130,11 @@ function addToCart(id) {
 }
 
 function saveCart() {
-  localStorage.setItem("dady_cart", JSON.stringify(cart));
+  localStorage.setItem(
+    "dady_cart",
+    JSON.stringify(cart)
+  );
+
   updateCartCount();
   renderCart();
 }
@@ -99,7 +143,10 @@ function updateCartCount() {
   const count = document.getElementById("count");
   if (!count) return;
 
-  count.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+  count.textContent = cart.reduce(
+    (total, item) => total + item.qty,
+    0
+  );
 }
 
 function renderCart() {
@@ -116,19 +163,31 @@ function renderCart() {
 
   items.innerHTML = cart.map(item => `
     <div class="cart-item">
+
       <img src="${item.image}" alt="${item.name}">
+
       <div>
         <b>${item.name}</b>
-        <p>₹${item.price} × ${item.qty}</p>
 
-        <button onclick="changeQty(${item.id}, -1)">−</button>
+        <p>
+          ₹${item.price} × ${item.qty}
+        </p>
+
+        <button onclick="changeQty(${item.id}, -1)">
+          −
+        </button>
+
         <span>${item.qty}</span>
-        <button onclick="changeQty(${item.id}, 1)">+</button>
+
+        <button onclick="changeQty(${item.id}, 1)">
+          +
+        </button>
 
         <button onclick="removeFromCart(${item.id})">
           Remove
         </button>
       </div>
+
     </div>
   `).join("");
 
@@ -142,6 +201,7 @@ function renderCart() {
 
 function changeQty(id, amount) {
   const item = cart.find(item => item.id === id);
+
   if (!item) return;
 
   item.qty += amount;
@@ -158,17 +218,27 @@ function removeFromCart(id) {
   saveCart();
 }
 
+/* CART DRAWER */
+
 function openCart() {
   const drawer = document.getElementById("drawer");
-  if (drawer) drawer.classList.add("open");
+
+  if (drawer) {
+    drawer.classList.add("open");
+  }
 
   renderCart();
 }
 
 function closeCart() {
   const drawer = document.getElementById("drawer");
-  if (drawer) drawer.classList.remove("open");
+
+  if (drawer) {
+    drawer.classList.remove("open");
+  }
 }
+
+/* CHECKOUT */
 
 function checkout() {
   if (cart.length === 0) {
@@ -177,13 +247,21 @@ function checkout() {
   }
 
   const modal = document.getElementById("checkout");
-  if (modal) modal.classList.add("show");
+
+  if (modal) {
+    modal.classList.add("show");
+  }
 }
 
 function hideCheckout() {
   const modal = document.getElementById("checkout");
-  if (modal) modal.classList.remove("show");
+
+  if (modal) {
+    modal.classList.remove("show");
+  }
 }
+
+/* PLACE COD ORDER */
 
 function placeOrder() {
   const name = document.getElementById("name").value.trim();
@@ -207,7 +285,8 @@ function placeOrder() {
     return;
   }
 
-  const orderId = "DC" + Date.now().toString().slice(-6);
+  const orderId =
+    "DC" + Date.now().toString().slice(-6);
 
   msg.innerHTML = `
     <strong>Order placed successfully! 🎉</strong><br>
@@ -224,20 +303,10 @@ function placeOrder() {
   }, 2500);
 }
 
-function filterCategory(category) {
-  if (category === "All") {
-    loadProducts();
-    return;
-  }
-
-  const filtered = products.filter(
-    p => p.category === category
-  );
-
-  loadProducts(filtered);
-}
+/* START WEBSITE */
 
 document.addEventListener("DOMContentLoaded", () => {
+  createCategories();
   loadProducts();
   updateCartCount();
   renderCart();
