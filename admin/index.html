@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DADY CLOTHES Admin</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f5f5f5;color:#171717}
+header{background:#111;color:white;padding:18px 20px;display:flex;justify-content:space-between;align-items:center}
+header h2{margin:0}
+.container{max-width:1100px;margin:25px auto;padding:0 15px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.card{background:white;padding:20px;border-radius:12px;box-shadow:0 3px 12px #0001}
+.card h3{margin:0 0 8px}
+.card b{font-size:28px}
+.section{background:white;padding:20px;margin-top:20px;border-radius:12px}
+input,select,textarea{width:100%;padding:12px;margin:7px 0;border:1px solid #ddd;border-radius:8px;font-size:15px}
+textarea{min-height:80px}
+button{border:0;padding:11px 16px;border-radius:8px;cursor:pointer;font-weight:bold}
+.add{background:#111;color:white}
+.delete{background:#ffdddd;color:#b00000}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:15px;margin-top:15px}
+.product{border:1px solid #eee;border-radius:10px;overflow:hidden}
+.product img{width:100%;height:220px;object-fit:cover}
+.product div{padding:12px}
+.product h3{margin:5px 0}
+.price{font-weight:bold;font-size:18px}
+small{color:#777}
+@media(max-width:700px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🛍️ DADY CLOTHES</h2>
+  <button onclick="location.href='../'">VIEW STORE</button>
+</header>
+
+<div class="container">
+
+  <h1>Admin Dashboard</h1>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Total Products</h3>
+      <b id="totalProducts">0</b>
+    </div>
+    <div class="card">
+      <h3>Orders</h3>
+      <b id="totalOrders">0</b>
+    </div>
+    <div class="card">
+      <h3>Store Status</h3>
+      <b style="font-size:20px">🟢 Online</b>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>➕ Add New Product</h2>
+
+    <input id="name" placeholder="Product name">
+    
+    <select id="category">
+      <option>T-Shirts</option>
+      <option>Hoodies</option>
+      <option>Jeans</option>
+      <option>Pants</option>
+      <option>Shirts</option>
+      <option>Jackets</option>
+    </select>
+
+    <input id="price" type="number" placeholder="Selling price ₹">
+    <input id="oldPrice" type="number" placeholder="Old price ₹">
+    <input id="image" placeholder="Product image URL">
+    <textarea id="description" placeholder="Product description"></textarea>
+
+    <button class="add" onclick="addProduct()">ADD PRODUCT</button>
+  </div>
+
+  <div class="section">
+    <h2>📦 Products</h2>
+    <div id="products" class="products"></div>
+  </div>
+
+  <div class="section">
+    <h2>🧾 Orders</h2>
+    <p id="orders">No orders yet.</p>
+  </div>
+
+</div>
+
+<script>
+
+let products = JSON.parse(localStorage.getItem("dady_products") || "[]");
+
+const defaultProducts = [
+{
+id:1,
+name:"Oversized Black T-Shirt",
+category:"T-Shirts",
+price:599,
+oldPrice:899,
+image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",
+description:"Premium cotton oversized T-shirt."
+},
+{
+id:2,
+name:"Premium White T-Shirt",
+category:"T-Shirts",
+price:549,
+oldPrice:799,
+image:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600",
+description:"Clean premium white T-shirt."
+},
+{
+id:3,
+name:"Black Streetwear Hoodie",
+category:"Hoodies",
+price:999,
+oldPrice:1499,
+image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600",
+description:"Warm premium streetwear hoodie."
+}
+];
+
+if(products.length===0){
+  products=defaultProducts;
+  saveProducts();
+}
+
+function saveProducts(){
+  localStorage.setItem("dady_products",JSON.stringify(products));
+}
+
+function renderProducts(){
+
+  document.getElementById("totalProducts").textContent=products.length;
+
+  const box=document.getElementById("products");
+
+  if(products.length===0){
+    box.innerHTML="<p>No products.</p>";
+    return;
+  }
+
+  box.innerHTML=products.map(p=>`
+
+    <div class="product">
+
+      <img src="${p.image}" alt="${p.name}">
+
+      <div>
+        <small>${p.category}</small>
+
+        <h3>${p.name}</h3>
+
+        <p class="price">
+          ₹${p.price}
+          <del>₹${p.oldPrice}</del>
+        </p>
+
+        <p>${p.description}</p>
+
+        <button class="delete" onclick="deleteProduct(${p.id})">
+          DELETE
+        </button>
+      </div>
+
+    </div>
+
+  `).join("");
+}
+
+function addProduct(){
+
+  const name=document.getElementById("name").value.trim();
+  const category=document.getElementById("category").value;
+  const price=Number(document.getElementById("price").value);
+  const oldPrice=Number(document.getElementById("oldPrice").value);
+  const image=document.getElementById("image").value.trim();
+  const description=document.getElementById("description").value.trim();
+
+  if(!name || !price || !image){
+    alert("Product name, price aur image zaroor bharo.");
+    return;
+  }
+
+  products.push({
+    id:Date.now(),
+    name,
+    category,
+    price,
+    oldPrice:oldPrice || price,
+    image,
+    description:description || "Premium quality product."
+  });
+
+  saveProducts();
+  renderProducts();
+
+  document.getElementById("name").value="";
+  document.getElementById("price").value="";
+  document.getElementById("oldPrice").value="";
+  document.getElementById("image").value="";
+  document.getElementById("description").value="";
+
+  alert("Product added successfully! 🎉");
+}
+
+function deleteProduct(id){
+
+  if(!confirm("Is product ko delete karna hai?")) return;
+
+  products=products.filter(p=>p.id!==id);
+
+  saveProducts();
+  renderProducts();
+}
+
+renderProducts();
+
+</script>
+
+</body>
+</html>
