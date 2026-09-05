@@ -1,4 +1,10 @@
-const defaultProducts = [
+const SUPABASE_URL =  https://kykdfhmumkttibcdcigg.supabase.co
+const SUPABASE_PUBLISHABLE_KEY = sb_publishable_aQGIGobtka8ZK_SZWx6z9A_C6XTHegW
+
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);const defaultProducts = [
   {id:1,name:"Oversized Black T-Shirt",category:"T-Shirts",price:599,oldPrice:899,image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",description:"Premium cotton oversized T-shirt with a comfortable streetwear fit."},
   {id:2,name:"Premium White T-Shirt",category:"T-Shirts",price:549,oldPrice:799,image:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600",description:"Clean premium white T-shirt made for everyday style."},
   {id:3,name:"Black Streetwear Hoodie",category:"Hoodies",price:999,oldPrice:1499,image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600",description:"Warm and stylish streetwear hoodie."},
