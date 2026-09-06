@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,138 +7,49 @@
 
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f5f5f5;
-  color:#171717
-}
-button{
-  border:0;
-  padding:11px 16px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold
-}
-input,select,textarea{
-  width:100%;
-  padding:12px;
-  margin:7px 0;
-  border:1px solid #ddd;
-  border-radius:8px;
-  font-size:15px
-}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f5f5;color:#171717}
+button{border:0;padding:11px 16px;border-radius:8px;cursor:pointer;font-weight:bold}
+input,select,textarea{width:100%;padding:12px;margin:7px 0;border:1px solid #ddd;border-radius:8px;font-size:15px}
 textarea{min-height:80px}
 
-.login{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px
-}
-.login-box{
-  background:white;
-  width:100%;
-  max-width:400px;
-  padding:30px;
-  border-radius:15px;
-  box-shadow:0 5px 25px #0002
-}
+.login{min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
+.login-box{background:white;width:100%;max-width:400px;padding:30px;border-radius:15px;box-shadow:0 5px 25px #0002}
 .login-box h1{text-align:center}
-.login-btn{
-  width:100%;
-  background:#111;
-  color:white;
-  margin-top:10px
-}
-.error{
-  color:#d00000;
-  text-align:center
-}
+.login-btn{width:100%;background:#111;color:white;margin-top:10px}
+.error{color:#d00000;text-align:center}
 
 #panel{display:none}
 
-header{
-  background:#111;
-  color:white;
-  padding:18px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px
-}
+header{background:#111;color:white;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:10px}
 header h2{margin:0}
 
-.container{
-  max-width:1100px;
-  margin:25px auto;
-  padding:0 15px
-}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px
-}
-.card{
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  box-shadow:0 3px 12px #0001
-}
+.container{max-width:1100px;margin:25px auto;padding:0 15px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.card{background:white;padding:20px;border-radius:12px;box-shadow:0 3px 12px #0001}
 .card h3{margin:0 0 8px}
 .card b{font-size:28px}
 
-.section{
-  background:white;
-  padding:20px;
-  margin-top:20px;
-  border-radius:12px
-}
+.section{background:white;padding:20px;margin-top:20px;border-radius:12px}
 
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:15px
-}
-.product{
-  border:1px solid #eee;
-  border-radius:10px;
-  overflow:hidden
-}
-.product img{
-  width:100%;
-  height:220px;
-  object-fit:cover
-}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:15px}
+.product{border:1px solid #eee;border-radius:10px;overflow:hidden}
+.product img{width:100%;height:220px;object-fit:cover}
 .product div{padding:12px}
 .product h3{margin:5px 0}
-.price{
-  font-weight:bold;
-  font-size:18px
-}
+.price{font-weight:bold;font-size:18px}
 
 .add{background:#111;color:white}
 .edit{background:#e8e8e8;margin-right:5px}
 .delete{background:#ffdddd;color:#b00000}
+.logout{background:#ff4444;color:white}
 
-.logout{
-  background:#ff4444;
-  color:white
-}
+#editBox{display:none;border:2px solid #111;padding:15px;border-radius:10px;margin-bottom:20px}
 
-#editBox{
-  display:none;
-  border:2px solid #111;
-  padding:15px;
-  border-radius:10px;
-  margin-bottom:20px
-}
+.order{border:1px solid #ddd;padding:15px;margin:10px 0;border-radius:10px}
 
 @media(max-width:700px){
-  .cards{grid-template-columns:1fr}
-  header{align-items:flex-start}
+.cards{grid-template-columns:1fr}
+header{align-items:flex-start}
 }
 </style>
 </head>
@@ -147,17 +58,19 @@ header h2{margin:0}
 
 <!-- LOGIN -->
 <div id="login" class="login">
-  <div class="login-box">
-    <h1>🛍️ DADY CLOTHES</h1>
-    <p style="text-align:center">Admin Login</p>
+<div class="login-box">
 
-    <input id="adminUser" placeholder="Username">
-    <input id="adminPass" type="password" placeholder="Password">
+<h1>🛍️ DADY CLOTHES</h1>
+<p style="text-align:center">Admin Login</p>
 
-    <button class="login-btn" onclick="login()">LOGIN</button>
+<input id="adminEmail" type="email" placeholder="Admin Email">
+<input id="adminPass" type="password" placeholder="Password">
 
-    <p id="loginError" class="error"></p>
-  </div>
+<button class="login-btn" onclick="login()">LOGIN</button>
+
+<p id="loginError" class="error"></p>
+
+</div>
 </div>
 
 
@@ -165,13 +78,14 @@ header h2{margin:0}
 <div id="panel">
 
 <header>
-  <h2>DADY CLOTHES</h2>
+<h2>DADY CLOTHES</h2>
 
-  <div>
-    <button onclick="location.href='../'">VIEW STORE</button>
-    <button class="logout" onclick="logout()">LOGOUT</button>
-  </div>
+<div>
+<button onclick="location.href='../'">VIEW STORE</button>
+<button class="logout" onclick="logout()">LOGOUT</button>
+</div>
 </header>
+
 
 <div class="container">
 
@@ -179,20 +93,20 @@ header h2{margin:0}
 
 <div class="cards">
 
-  <div class="card">
-    <h3>Total Products</h3>
-    <b id="totalProducts">0</b>
-  </div>
+<div class="card">
+<h3>Total Products</h3>
+<b id="totalProducts">0</b>
+</div>
 
-  <div class="card">
-    <h3>Total Orders</h3>
-    <b id="totalOrders">0</b>
-  </div>
+<div class="card">
+<h3>Total Orders</h3>
+<b id="totalOrders">0</b>
+</div>
 
-  <div class="card">
-    <h3>Store Status</h3>
-    <b style="font-size:20px">🟢 Online</b>
-  </div>
+<div class="card">
+<h3>Store Status</h3>
+<b style="font-size:20px">🟢 Online</b>
+</div>
 
 </div>
 
@@ -205,12 +119,12 @@ header h2{margin:0}
 <input id="name" placeholder="Product name">
 
 <select id="category">
-  <option>T-Shirts</option>
-  <option>Hoodies</option>
-  <option>Jeans</option>
-  <option>Pants</option>
-  <option>Shirts</option>
-  <option>Jackets</option>
+<option>T-Shirts</option>
+<option>Hoodies</option>
+<option>Jeans</option>
+<option>Pants</option>
+<option>Shirts</option>
+<option>Jackets</option>
 </select>
 
 <input id="price" type="number" placeholder="Selling price ₹">
@@ -224,7 +138,7 @@ header h2{margin:0}
 </div>
 
 
-<!-- EDIT PRODUCT -->
+<!-- EDIT -->
 <div id="editBox">
 
 <h2>✏️ Edit Product</h2>
@@ -232,12 +146,12 @@ header h2{margin:0}
 <input id="editName" placeholder="Product name">
 
 <select id="editCategory">
-  <option>T-Shirts</option>
-  <option>Hoodies</option>
-  <option>Jeans</option>
-  <option>Pants</option>
-  <option>Shirts</option>
-  <option>Jackets</option>
+<option>T-Shirts</option>
+<option>Hoodies</option>
+<option>Jeans</option>
+<option>Pants</option>
+<option>Shirts</option>
+<option>Jackets</option>
 </select>
 
 <input id="editPrice" type="number" placeholder="Selling price ₹">
@@ -268,7 +182,7 @@ header h2{margin:0}
 <h2>🧾 Orders</h2>
 
 <div id="orders">
-  <p>No orders yet.</p>
+<p>No orders yet.</p>
 </div>
 
 </div>
@@ -276,90 +190,278 @@ header h2{margin:0}
 </div>
 </div>
 
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-const USERNAME="admin";
-const PASSWORD="1234";
+/* ================================
+   SUPABASE CONNECTION
+   ================================ */
 
-let products=JSON.parse(
-  localStorage.getItem("dady_products") || "[]"
+const SUPABASE_URL = https://kykdfhmumkttibcdcigg.supabase.co
+
+const SUPABASE_PUBLISHABLE_KEY = sb_publishable_aQGIGobtka8ZK_SZWx6z9A_C6XTHegW
+
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
 );
 
-let editId=null;
+
+/* ================================
+   VARIABLES
+   ================================ */
+
+let products = [];
+let editId = null;
 
 
-/* LOGIN */
+/* ================================
+   LOGIN
+   ================================ */
 
-function login(){
+async function login(){
 
-  const user=document.getElementById("adminUser").value.trim();
-  const pass=document.getElementById("adminPass").value;
+  const email =
+    document.getElementById("adminEmail").value.trim();
 
-  if(user===USERNAME && pass===PASSWORD){
+  const password =
+    document.getElementById("adminPass").value;
 
-    sessionStorage.setItem("dady_admin","yes");
+  const errorBox =
+    document.getElementById("loginError");
 
-    showPanel();
+  errorBox.textContent = "";
 
-  }else{
+  if(!email || !password){
 
-    document.getElementById("loginError").textContent=
-      "Wrong username or password";
+    errorBox.textContent =
+      "Email aur password bharo.";
 
+    return;
   }
+
+  const {data,error} =
+    await db.auth.signInWithPassword({
+      email:email,
+      password:password
+    });
+
+  if(error){
+
+    errorBox.textContent =
+      "Login failed: " + error.message;
+
+    return;
+  }
+
+  await checkAdmin();
+
 }
 
+
+/* ================================
+   CHECK ADMIN
+   ================================ */
+
+async function checkAdmin(){
+
+  const {
+    data:{user}
+  } = await db.auth.getUser();
+
+  if(!user){
+
+    showLogin();
+
+    return;
+  }
+
+  const {data,error} =
+    await db
+      .from("admins")
+      .select("user_id")
+      .eq("user_id",user.id)
+      .maybeSingle();
+
+  if(error || !data){
+
+    await db.auth.signOut();
+
+    document.getElementById("loginError").textContent =
+      "Is account ko admin permission nahi hai.";
+
+    showLogin();
+
+    return;
+  }
+
+  showPanel();
+
+}
+
+
+/* ================================
+   SHOW PANEL
+   ================================ */
 
 function showPanel(){
 
   document.getElementById("login").style.display="none";
+
   document.getElementById("panel").style.display="block";
+
+  loadProducts();
+
+  loadOrders();
+
+}
+
+
+/* ================================
+   SHOW LOGIN
+   ================================ */
+
+function showLogin(){
+
+  document.getElementById("login").style.display="flex";
+
+  document.getElementById("panel").style.display="none";
+
+}
+
+
+/* ================================
+   LOGOUT
+   ================================ */
+
+async function logout(){
+
+  await db.auth.signOut();
+
+  showLogin();
+
+}
+
+
+/* ================================
+   LOAD PRODUCTS
+   ================================ */
+
+async function loadProducts(){
+
+  const {data,error} =
+    await db
+      .from("products")
+      .select("*")
+      .order("id",{ascending:true});
+
+  if(error){
+
+    alert("Products load error: " + error.message);
+
+    return;
+  }
+
+  products = data || [];
 
   renderProducts();
 
-  loadOrders();
 }
 
 
-function logout(){
+/* ================================
+   RENDER PRODUCTS
+   ================================ */
 
-  sessionStorage.removeItem("dady_admin");
+function renderProducts(){
 
-  location.reload();
+  document.getElementById("totalProducts").textContent =
+    products.length;
+
+  const box =
+    document.getElementById("products");
+
+  if(products.length === 0){
+
+    box.innerHTML =
+      "<p>No products yet.</p>";
+
+    return;
+  }
+
+  box.innerHTML =
+    products.map(p => `
+
+      <div class="product">
+
+        <img
+          src="${escapeHTML(p.image || '')}"
+          alt="${escapeHTML(p.name || '')}"
+        >
+
+        <div>
+
+          <small>${escapeHTML(p.category || '')}</small>
+
+          <h3>${escapeHTML(p.name || '')}</h3>
+
+          <p class="price">
+            ₹${p.price}
+            <del>₹${p.old_price || p.price}</del>
+          </p>
+
+          <p>
+            ${escapeHTML(p.description || '')}
+          </p>
+
+          <button
+            class="edit"
+            onclick="editProduct(${p.id})">
+            ✏️ EDIT
+          </button>
+
+          <button
+            class="delete"
+            onclick="deleteProduct(${p.id})">
+            🗑️ DELETE
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
 
 }
 
 
-/* CHECK LOGIN */
+/* ================================
+   ADD PRODUCT
+   ================================ */
 
-if(sessionStorage.getItem("dady_admin")==="yes"){
-  showPanel();
-}
+async function addProduct(){
 
+  const name =
+    document.getElementById("name").value.trim();
 
-/* SAVE */
+  const category =
+    document.getElementById("category").value;
 
-function saveProducts(){
+  const price =
+    Number(document.getElementById("price").value);
 
-  localStorage.setItem(
-    "dady_products",
-    JSON.stringify(products)
-  );
+  const oldPrice =
+    Number(document.getElementById("oldPrice").value);
 
-}
+  const image =
+    document.getElementById("image").value.trim();
 
+  const description =
+    document.getElementById("description").value.trim();
 
-/* ADD PRODUCT */
-
-function addProduct(){
-
-  const name=document.getElementById("name").value.trim();
-  const category=document.getElementById("category").value;
-  const price=Number(document.getElementById("price").value);
-  const oldPrice=Number(document.getElementById("oldPrice").value);
-  const image=document.getElementById("image").value.trim();
-  const description=document.getElementById("description").value.trim();
 
   if(!name || !price){
 
@@ -368,27 +470,37 @@ function addProduct(){
     return;
   }
 
-  products.push({
 
-    id:Date.now(),
+  const {error} =
+    await db
+      .from("products")
+      .insert({
 
-    name:name,
+        name:name,
 
-    category:category,
+        category:category,
 
-    price:price,
+        price:price,
 
-    oldPrice:oldPrice || price,
+        old_price:oldPrice || price,
 
-    image:image || "https://via.placeholder.com/600x700?text=DADY+CLOTHES",
+        image:image ||
+        "https://via.placeholder.com/600x700?text=DADY+CLOTHES",
 
-    description:description || "Premium quality product."
+        description:
+        description ||
+        "Premium quality product."
 
-  });
+      });
 
-  saveProducts();
 
-  renderProducts();
+  if(error){
+
+    alert("Product add nahi hua: " + error.message);
+
+    return;
+  }
+
 
   document.getElementById("name").value="";
   document.getElementById("price").value="";
@@ -396,197 +508,296 @@ function addProduct(){
   document.getElementById("image").value="";
   document.getElementById("description").value="";
 
+
+  await loadProducts();
+
   alert("Product added successfully 🎉");
 
 }
 
 
-/* SHOW PRODUCTS */
-
-function renderProducts(){
-
-  document.getElementById("totalProducts").textContent=
-    products.length;
-
-  const box=document.getElementById("products");
-
-  if(products.length===0){
-
-    box.innerHTML="<p>No products.</p>";
-
-    return;
-  }
-
-  box.innerHTML=products.map(p=>`
-
-    <div class="product">
-
-      <img src="${p.image}" alt="${p.name}">
-
-      <div>
-
-        <small>${p.category}</small>
-
-        <h3>${p.name}</h3>
-
-        <p class="price">
-          ₹${p.price}
-          <del>₹${p.oldPrice}</del>
-        </p>
-
-        <p>${p.description}</p>
-
-        <button class="edit"
-          onclick="editProduct(${p.id})">
-          ✏️ EDIT
-        </button>
-
-        <button class="delete"
-          onclick="deleteProduct(${p.id})">
-          🗑️ DELETE
-        </button>
-
-      </div>
-
-    </div>
-
-  `).join("");
-
-}
-
-
-/* EDIT PRODUCT */
+/* ================================
+   EDIT PRODUCT
+   ================================ */
 
 function editProduct(id){
 
-  const p=products.find(x=>x.id===id);
+  const p =
+    products.find(x => Number(x.id) === Number(id));
 
   if(!p)return;
 
-  editId=id;
+  editId = id;
 
-  document.getElementById("editBox").style.display="block";
+  document.getElementById("editBox").style.display =
+    "block";
 
-  document.getElementById("editName").value=p.name;
-  document.getElementById("editCategory").value=p.category;
-  document.getElementById("editPrice").value=p.price;
-  document.getElementById("editOldPrice").value=p.oldPrice;
-  document.getElementById("editImage").value=p.image;
-  document.getElementById("editDescription").value=p.description;
+  document.getElementById("editName").value =
+    p.name || "";
 
-  window.scrollTo({
-    top:document.getElementById("editBox").offsetTop,
+  document.getElementById("editCategory").value =
+    p.category || "T-Shirts";
+
+  document.getElementById("editPrice").value =
+    p.price || "";
+
+  document.getElementById("editOldPrice").value =
+    p.old_price || "";
+
+  document.getElementById("editImage").value =
+    p.image || "";
+
+  document.getElementById("editDescription").value =
+    p.description || "";
+
+  document.getElementById("editBox").scrollIntoView({
     behavior:"smooth"
   });
 
 }
 
 
-/* SAVE EDIT */
+/* ================================
+   SAVE EDIT
+   ================================ */
 
-function saveEdit(){
+async function saveEdit(){
 
-  const p=products.find(x=>x.id===editId);
+  const name =
+    document.getElementById("editName").value.trim();
 
-  if(!p)return;
+  const category =
+    document.getElementById("editCategory").value;
 
-  p.name=document.getElementById("editName").value.trim();
-  p.category=document.getElementById("editCategory").value;
-  p.price=Number(document.getElementById("editPrice").value);
-  p.oldPrice=Number(document.getElementById("editOldPrice").value);
-  p.image=document.getElementById("editImage").value.trim();
-  p.description=document.getElementById("editDescription").value.trim();
+  const price =
+    Number(document.getElementById("editPrice").value);
 
-  if(!p.name || !p.price){
+  const oldPrice =
+    Number(document.getElementById("editOldPrice").value);
+
+  const image =
+    document.getElementById("editImage").value.trim();
+
+  const description =
+    document.getElementById("editDescription").value.trim();
+
+
+  if(!name || !price){
 
     alert("Name aur price required hai.");
 
     return;
   }
 
-  saveProducts();
 
-  renderProducts();
+  const {error} =
+    await db
+      .from("products")
+      .update({
+
+        name:name,
+
+        category:category,
+
+        price:price,
+
+        old_price:oldPrice || price,
+
+        image:image,
+
+        description:description
+
+      })
+      .eq("id",editId);
+
+
+  if(error){
+
+    alert("Update failed: " + error.message);
+
+    return;
+  }
+
 
   cancelEdit();
+
+  await loadProducts();
 
   alert("Product updated successfully ✅");
 
 }
 
 
-/* CANCEL EDIT */
+/* ================================
+   CANCEL EDIT
+   ================================ */
 
 function cancelEdit(){
 
   editId=null;
 
-  document.getElementById("editBox").style.display="none";
+  document.getElementById("editBox").style.display =
+    "none";
 
 }
 
 
-/* DELETE */
+/* ================================
+   DELETE PRODUCT
+   ================================ */
 
-function deleteProduct(id){
+async function deleteProduct(id){
 
   if(!confirm("Product delete karna hai?"))return;
 
-  products=products.filter(p=>p.id!==id);
 
-  saveProducts();
+  const {error} =
+    await db
+      .from("products")
+      .delete()
+      .eq("id",id);
 
-  renderProducts();
 
-}
+  if(error){
 
-
-/* ORDERS */
-
-function loadOrders(){
-
-  const orders=JSON.parse(
-    localStorage.getItem("dady_orders") || "[]"
-  );
-
-  document.getElementById("totalOrders").textContent=
-    orders.length;
-
-  const box=document.getElementById("orders");
-
-  if(orders.length===0){
-
-    box.innerHTML="<p>No orders yet.</p>";
+    alert("Delete failed: " + error.message);
 
     return;
   }
 
-  box.innerHTML=orders.map(o=>`
 
-    <div style="
-      border:1px solid #ddd;
-      padding:15px;
-      margin:10px 0;
-      border-radius:10px">
+  await loadProducts();
 
-      <b>Order ID: ${o.orderId}</b>
-
-      <p>
-        Customer: ${o.name}<br>
-        Phone: ${o.phone}<br>
-        Address: ${o.address}<br>
-        Pincode: ${o.pin}
-      </p>
-
-      <b>Total: ₹${o.total}</b>
-
-    </div>
-
-  `).join("");
+  alert("Product deleted ✅");
 
 }
 
+
+/* ================================
+   LOAD ORDERS
+   ================================ */
+
+async function loadOrders(){
+
+  const {data,error} =
+    await db
+      .from("orders")
+      .select("*")
+      .order("created_at",{ascending:false});
+
+
+  if(error){
+
+    document.getElementById("orders").innerHTML =
+      "<p>Orders load error: " +
+      escapeHTML(error.message) +
+      "</p>";
+
+    return;
+  }
+
+
+  const orders = data || [];
+
+  document.getElementById("totalOrders").textContent =
+    orders.length;
+
+
+  const box =
+    document.getElementById("orders");
+
+
+  if(orders.length === 0){
+
+    box.innerHTML =
+      "<p>No orders yet.</p>";
+
+    return;
+  }
+
+
+  box.innerHTML =
+    orders.map(o => `
+
+      <div class="order">
+
+        <b>
+          Order ID:
+          ${escapeHTML(o.order_id || "")}
+        </b>
+
+        <p>
+          Customer:
+          ${escapeHTML(o.name || "")}
+          <br>
+
+          Phone:
+          ${escapeHTML(o.phone || "")}
+          <br>
+
+          Address:
+          ${escapeHTML(o.address || "")}
+          <br>
+
+          Pincode:
+          ${escapeHTML(o.pin || "")}
+        </p>
+
+        <b>
+          Total: ₹${o.total || 0}
+        </b>
+
+        <p>
+          Status:
+          ${escapeHTML(o.status || "Pending")}
+        </p>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* ================================
+   SECURITY HELPER
+   ================================ */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ================================
+   START
+   ================================ */
+
+document.addEventListener("DOMContentLoaded",async()=>{
+
+  const {
+    data:{session}
+  } = await db.auth.getSession();
+
+  if(session){
+
+    await checkAdmin();
+
+  }else{
+
+    showLogin();
+
+  }
+
+});
+
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </body>
-    </html>
+  </html>
