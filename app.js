@@ -2,8 +2,8 @@ const SUPABASE_URL = "https://kykdfhmumkttibcdcigg.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_aQGIGobtka8ZK_SZWx6z9A_C6XTHegW";
 
 const db = window.supabase.createClient(
-  SUPABASE_URL,https://kykdfhmumkttibcdcigg.supabase.co";
-  SUPABASE_PUBLISHABLE_KEYsb_publishable_aQGIGobtka8ZK_SZWx6z9A_C6XTHegW
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
 );
 
 const defaultProducts = [
