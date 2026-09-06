@@ -109,7 +109,52 @@ header{align-items:flex-start}
 </div>
 
 </div>
+async function uploadProductImage(){
 
+  const image = await uploadProductImage();
+  const status = document.getElementById("uploadStatus");
+  const file = input.files[0];
+
+  if(!file) return null;
+
+  if(!file.type.startsWith("image/")){
+    alert("Sirf image select karo.");
+    return null;
+  }
+
+  if(file.size > 5 * 1024 * 1024){
+    alert("Image 5MB se chhoti honi chahiye.");
+    return null;
+  }
+
+  status.textContent = "⏳ Image upload ho rahi hai...";
+
+  const ext = file.name.split(".").pop().toLowerCase();
+  const fileName =
+    Date.now() + "-" +
+    Math.random().toString(36).substring(2) +
+    "." + ext;
+
+  const filePath = "products/" + fileName;
+
+  const { error } = await db.storage
+    .from("product-images")
+    .upload(filePath, file);
+
+  if(error){
+    status.textContent = "";
+    alert("Image upload failed: " + error.message);
+    return null;
+  }
+
+  const { data } = db.storage
+    .from("product-images")
+    .getPublicUrl(filePath);
+
+  status.textContent = "✅ Image uploaded";
+
+  return data.publicUrl;
+}
 
 <!-- ADD PRODUCT -->
 <div class="section">
@@ -129,7 +174,13 @@ header{align-items:flex-start}
 
 <input id="price" type="number" placeholder="Selling price ₹">
 <input id="oldPrice" type="number" placeholder="Old price ₹">
-<input id="image" placeholder="Product image URL">
+<input id="imageFile" type="file" accept="image/*">
+
+<small style="color:#666">
+📷 Gallery se product image select karo
+</small>
+
+<div id="uploadStatus"></div>
 
 <textarea id="description" placeholder="Product description"></textarea>
 
