@@ -1,12 +1,19 @@
 const SUPABASE_URL = "https://kykdfhmumkttibcdcigg.supabase.co";
 
-const SUPABASE_PUBLISHABLE_KEY =
-  "sb_publishable_aQGIGobtka8ZK_SZWx6z9A_C6XTHegW";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_aQGIGobtka8ZK_SZWx6z9A_C6XTHegW";
 
-const db = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
-);
+let db = null;
+
+try {
+  if (window.supabase && window.supabase.createClient) {
+    db = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+  }
+} catch (error) {
+  console.error("Supabase init error:", error);
+}
 
 
 /* =========================
