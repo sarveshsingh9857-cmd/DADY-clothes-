@@ -1163,3 +1163,501 @@ footer h4{
   color:#666;
   font-size:9px;
    }
+/* =========================================
+   DADY CLOTHES — FINAL DESIGN
+   PART 3 — RESPONSIVE
+========================================= */
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1100px){
+
+  header{
+    padding:0 3%;
+  }
+
+  nav{
+    gap:14px;
+  }
+
+  nav a{
+    font-size:9px;
+  }
+
+  .hero{
+    padding:60px 5%;
+    gap:35px;
+  }
+
+  #grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+
+  .footer-main{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+}
+
+
+/* ================= TABLET / MOBILE ================= */
+
+@media (max-width: 800px){
+
+  .topbar{
+    justify-content:center;
+    text-align:center;
+    font-size:9px;
+  }
+
+  .topbar span:last-child{
+    display:none;
+  }
+
+  header{
+    height:auto;
+    min-height:68px;
+    padding:12px 4%;
+    flex-wrap:wrap;
+  }
+
+  nav{
+    order:3;
+    width:100%;
+    flex:none;
+
+    justify-content:flex-start;
+
+    overflow-x:auto;
+    padding:4px 0 2px;
+
+    gap:20px;
+
+    scrollbar-width:none;
+  }
+
+  nav::-webkit-scrollbar{
+    display:none;
+  }
+
+  nav a{
+    flex-shrink:0;
+    font-size:9px;
+  }
+
+  .header-icons{
+    margin-left:auto;
+  }
+
+  .hero{
+    min-height:auto;
+    padding:60px 6%;
+
+    grid-template-columns:1fr;
+
+    gap:35px;
+  }
+
+  .hero h1{
+    font-size:clamp(45px,12vw,70px);
+    letter-spacing:-4px;
+  }
+
+  .hero-benefits{
+    min-height:auto;
+  }
+
+  .hero-benefits > div{
+    padding:16px;
+  }
+
+  .hero::before{
+    font-size:90px;
+  }
+
+  #cat{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .categories-section,
+  .shop-section{
+    padding:55px 5%;
+  }
+
+  .section-title h2{
+    font-size:24px;
+  }
+
+  #grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:15px;
+  }
+
+  .product > div:first-child{
+    height:280px;
+  }
+
+  .product-info{
+    padding:13px;
+  }
+
+  .product-info h3{
+    font-size:13px;
+  }
+
+  .product-info p b{
+    font-size:16px;
+  }
+
+  .promo-section{
+    grid-template-columns:1fr;
+    padding:55px 5%;
+  }
+
+  .promo-card{
+    min-height:230px;
+  }
+
+  .features{
+    grid-template-columns:repeat(2,1fr);
+    padding:35px 5%;
+  }
+
+  .about-section{
+    grid-template-columns:1fr;
+    gap:30px;
+    padding:65px 7%;
+  }
+
+  .about-section h2{
+    font-size:40px;
+  }
+
+  .footer-main{
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+  }
+
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 520px){
+
+  .topbar{
+    min-height:32px;
+    padding:8px 10px;
+    font-size:8px;
+  }
+
+  header{
+    padding:10px 4%;
+  }
+
+  .logo{
+    font-size:18px;
+  }
+
+  .hanger{
+    font-size:23px;
+  }
+
+  .logo small{
+    font-size:6px;
+    letter-spacing:2px;
+  }
+
+  .header-icons{
+    gap:5px;
+  }
+
+  .icon-btn{
+    width:35px;
+    height:35px;
+    font-size:17px;
+  }
+
+  .cartbtn{
+    height:35px;
+    min-width:44px;
+    padding:0 9px;
+  }
+
+  nav{
+    gap:17px;
+  }
+
+  nav a{
+    font-size:8px;
+  }
+
+  .hero{
+    padding:50px 6% 45px;
+  }
+
+  .script{
+    font-size:11px;
+  }
+
+  .hero h1{
+    font-size:47px;
+    letter-spacing:-3px;
+  }
+
+  .hero p{
+    font-size:12px;
+  }
+
+  .hero-btn{
+    padding:13px 19px;
+  }
+
+  .hero-benefits{
+    gap:10px;
+  }
+
+  .hero-benefits > div{
+    padding:13px;
+    grid-template-columns:32px 1fr;
+  }
+
+  .hero-benefits strong{
+    font-size:20px;
+  }
+
+  .hero-benefits b{
+    font-size:9px;
+  }
+
+  .hero-benefits small{
+    font-size:8px;
+  }
+
+  .categories-section,
+  .shop-section{
+    padding:45px 4%;
+  }
+
+  .section-title{
+    gap:9px;
+  }
+
+  .section-title > span{
+    width:4px;
+    height:23px;
+  }
+
+  .section-title h2{
+    font-size:20px;
+  }
+
+  #cat{
+    margin-top:25px;
+    gap:10px;
+  }
+
+  #cat button{
+    min-height:70px;
+    font-size:10px;
+  }
+
+  .shop-heading{
+    align-items:center;
+  }
+
+  .view-all{
+    padding:10px 12px;
+    font-size:8px;
+  }
+
+  .search-box{
+    margin-bottom:25px;
+  }
+
+  .search-box input{
+    height:44px;
+    font-size:11px;
+  }
+
+  #grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+
+  .product{
+    border-radius:10px;
+  }
+
+  .product > div:first-child{
+    height:230px;
+  }
+
+  .product-info{
+    padding:10px;
+  }
+
+  .product-info small{
+    font-size:7px;
+  }
+
+  .product-info h3{
+    font-size:11px;
+  }
+
+  .product-info p{
+    gap:5px;
+    margin-bottom:9px;
+  }
+
+  .product-info p b{
+    font-size:14px;
+  }
+
+  .product-info del{
+    font-size:9px;
+  }
+
+  .product-info .btn{
+    padding:10px 5px;
+    font-size:8px;
+  }
+
+  .promo-section{
+    padding:45px 4%;
+    gap:12px;
+  }
+
+  .promo-card{
+    min-height:210px;
+    padding:22px;
+    border-radius:12px;
+  }
+
+  .promo-card h3{
+    font-size:25px;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+    gap:5px;
+    padding:30px 5%;
+  }
+
+  .features > div{
+    padding:10px 5px;
+  }
+
+  .about-section{
+    padding:55px 7%;
+  }
+
+  .about-section h2{
+    font-size:35px;
+  }
+
+  .about-section > p{
+    font-size:12px;
+  }
+
+  /* PRODUCT MODAL */
+
+  .product-modal-box{
+    grid-template-columns:1fr;
+    max-height:94vh;
+  }
+
+  .product-modal-box > img{
+    height:280px;
+    min-height:280px;
+  }
+
+  .detail-content{
+    padding:25px 20px;
+  }
+
+  .detail-content h2{
+    font-size:23px;
+  }
+
+  /* CART */
+
+  #drawer{
+    width:100% !important;
+    right:-100% !important;
+    padding:20px !important;
+  }
+
+  #drawer.open{
+    right:0 !important;
+  }
+
+  .cart-item img{
+    width:65px;
+    height:80px;
+  }
+
+  /* CHECKOUT */
+
+  .checkout-box{
+    padding:25px 18px;
+  }
+
+  .checkout-box h2{
+    font-size:23px;
+  }
+
+  /* FOOTER */
+
+  footer{
+    padding:50px 6% 20px;
+  }
+
+  .footer-main{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    gap:8px;
+    margin-top:35px;
+  }
+
+}
+
+
+/* ================= VERY SMALL PHONES ================= */
+
+@media (max-width: 360px){
+
+  .hero h1{
+    font-size:40px;
+  }
+
+  #grid{
+    gap:8px;
+  }
+
+  .product > div:first-child{
+    height:200px;
+  }
+
+  .product-info{
+    padding:8px;
+  }
+
+  .product-info h3{
+    font-size:10px;
+  }
+
+  .product-info p b{
+    font-size:13px;
+  }
+
+  .product-info .btn{
+    font-size:7px;
+    padding:9px 3px;
+  }
+
+}
