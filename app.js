@@ -75,12 +75,12 @@ HELPERS
 ========================= */
 
 function escapeHTML(value) {
-return String(value ?? "")
-.replace(/&/g, "&")
-.replace(/</g, "<")
-.replace(/>/g, ">")
-.replace(/"/g, """)
-.replace(/'/g, "'");
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 function discountPercent(price, oldPrice) {
@@ -274,21 +274,30 @@ return `
 /* =========================
 CATEGORIES
 ========================= */
-
 function createCategories() {
+  const cat = document.getElementById("cat");
 
-const cat = document.getElementById("cat");
+  if (!cat) return;
 
-if (!cat) return;
+  const categories = [
+    "All",
+    ...new Set(
+      products
+        .map(product => product.category)
+        .filter(Boolean)
+    )
+  ];
 
-const categories = [
-"All",
-...new Set(
-products
-.map(product => product.category)
-.filter(Boolean)
-)
-];
+  cat.innerHTML = categories
+    .map(category => `
+      <button onclick="filterCategory('${escapeHTML(category)}')">
+        ${escapeHTML(category)}
+      </button>
+    `)
+    .join("");
+}
+
+
 
 cat.innerHTML = categories.map(category => "<button onclick="filterCategory('${escapeHTML(category)}')" > ${escapeHTML(category)} </button>").join("");
 }
