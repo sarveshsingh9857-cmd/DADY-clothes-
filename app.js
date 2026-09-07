@@ -1381,12 +1381,27 @@ document.addEventListener(
 ESC KEY
 ========================= */
 
-document.addEventListener(
-  "keydown",
-  function(event) {
+document.addEventListener("keydown", function(event) {
 
-    if (event.key !== "Escape")
-      return;
+  if (event.key !== "Escape") return;
+
+  closeProduct();
+  hideCheckout();
+  closeCart();
+
+});
 
 
-    closePro
+/* =========================
+START APP
+========================= */
+
+document.addEventListener("DOMContentLoaded", function() {
+
+  updateCartCount();
+  renderCart();
+  loadProducts();
+
+});
+
+    
