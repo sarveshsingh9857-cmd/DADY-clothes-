@@ -1441,19 +1441,76 @@ async function loadOrders(){
 
 
         <p>
+  <b>Status:</b>
+  ${escapeHTML(o.status || "Pending")}
+</p>
 
-          Status:
-          ${escapeHTML(
-            o.status ||
-            "Pending"
-          )}
+<select id="status-${o.id}">
+  <option value="Pending" ${o.status === "Pending" ? "selected" : ""}>
+    Pending
+  </option>
 
-        </p>
+  <option value="Confirmed" ${o.status === "Confirmed" ? "selected" : ""}>
+    Confirmed
+  </option>
 
-      </div>
+  <option value="Shipped" ${o.status === "Shipped" ? "selected" : ""}>
+    Shipped
+  </option>
 
-    `)
-    .join("");
+  <option value="Delivered" ${o.status === "Delivered" ? "selected" : ""}>
+    Delivered
+  </option>
+
+  <option value="Cancelled" ${o.status === "Cancelled" ? "selected" : ""}>
+    Cancelled
+  </option>
+</select>
+
+<button
+  class="add"
+  onclick="updateOrderStatus(${o.id})">
+  UPDATE STATUS
+</button>
+/* =================================
+   UPDATE ORDER STATUS
+   ================================= */
+
+async function updateOrderStatus(orderId){
+
+  const select =
+    document.getElementById(
+      "status-" + orderId
+    );
+
+  if(!select) return;
+
+  const newStatus =
+    select.value;
+
+  const {error} =
+    await db
+      .from("orders")
+      .update({
+        status: newStatus
+      })
+      .eq("id", orderId);
+
+  if(error){
+
+    alert(
+      "Status update failed: " +
+      error.message
+    );
+
+    return;
+  }
+
+  alert(
+    "Order status updated ✅"
+  );
+
+  await loadOrders();
 
 }
 
