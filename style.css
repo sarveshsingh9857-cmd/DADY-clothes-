@@ -1077,3 +1077,68 @@ SMALL PHONES
     font-size: 15px;
   }
   }
+/* =========================
+FINAL MOBILE FIX
+========================= */
+
+@media (max-width: 800px) {
+
+  header {
+    height: 65px;
+    padding: 0 14px;
+  }
+
+  header nav {
+    display: none !important;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
+
+  .cartbtn {
+    padding: 9px 13px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  #cat,
+  #grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .search-box input {
+    display: block;
+    width: 100% !important;
+    height: 46px;
+    padding: 0 18px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 50px !important;
+    background: #fff !important;
+    font-size: 14px !important;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+}
+
+@media (max-width: 500px) {
+
+  #cat,
+  #grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product > img {
+    height: 205px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+}
