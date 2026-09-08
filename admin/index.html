@@ -32,9 +32,7 @@ input,select,textarea{
   font-size:15px
 }
 
-textarea{
-  min-height:80px
-}
+textarea{min-height:80px}
 
 .login{
   min-height:100vh;
@@ -53,9 +51,7 @@ textarea{
   box-shadow:0 5px 25px #0002
 }
 
-.login-box h1{
-  text-align:center
-}
+.login-box h1{text-align:center}
 
 .login-btn{
   width:100%;
@@ -69,9 +65,7 @@ textarea{
   text-align:center
 }
 
-#panel{
-  display:none
-}
+#panel{display:none}
 
 header{
   background:#111;
@@ -83,9 +77,7 @@ header{
   gap:10px
 }
 
-header h2{
-  margin:0
-}
+header h2{margin:0}
 
 .container{
   max-width:1100px;
@@ -106,13 +98,9 @@ header h2{
   box-shadow:0 3px 12px #0001
 }
 
-.card h3{
-  margin:0 0 8px
-}
+.card h3{margin:0 0 8px}
 
-.card b{
-  font-size:28px
-}
+.card b{font-size:28px}
 
 .section{
   background:white;
@@ -139,13 +127,9 @@ header h2{
   object-fit:cover
 }
 
-.product div{
-  padding:12px
-}
+.product div{padding:12px}
 
-.product h3{
-  margin:5px 0
-}
+.product h3{margin:5px 0}
 
 .price{
   font-weight:bold;
@@ -187,6 +171,15 @@ header h2{
   border-radius:10px
 }
 
+.order select{
+  margin-bottom:8px
+}
+
+.order button{
+  width:100%;
+  margin-top:5px
+}
+
 .upload-status{
   margin:8px 0;
   font-weight:bold
@@ -217,13 +210,9 @@ header h2{
     gap:8px
   }
 
-  header button{
-    flex:1
-  }
+  header button{flex:1}
 
-  .section{
-    padding:15px
-  }
+  .section{padding:15px}
 }
 </style>
 </head>
@@ -254,6 +243,7 @@ header h2{
     >
 
     <button
+      type="button"
       class="login-btn"
       onclick="login()">
       LOGIN
@@ -275,11 +265,14 @@ header h2{
 
   <div>
 
-    <button onclick="location.href='../'">
+    <button
+      type="button"
+      onclick="location.href='../'">
       VIEW STORE
     </button>
 
     <button
+      type="button"
       class="logout"
       onclick="logout()">
       LOGOUT
@@ -299,31 +292,20 @@ header h2{
 <div class="cards">
 
   <div class="card">
-
     <h3>Total Products</h3>
-
     <b id="totalProducts">0</b>
-
   </div>
 
-
   <div class="card">
-
     <h3>Total Orders</h3>
-
     <b id="totalOrders">0</b>
-
   </div>
 
-
   <div class="card">
-
     <h3>Store Status</h3>
-
     <b style="font-size:20px">
       🟢 Online
     </b>
-
   </div>
 
 </div>
@@ -334,40 +316,30 @@ header h2{
 
 <h2>➕ Add Product</h2>
 
-
 <input
   id="name"
-  placeholder="Product name"
->
-
+  placeholder="Product name">
 
 <select id="category">
-
   <option>T-Shirts</option>
   <option>Hoodies</option>
   <option>Jeans</option>
   <option>Pants</option>
   <option>Shirts</option>
   <option>Jackets</option>
-
 </select>
-
 
 <input
   id="price"
   type="number"
-  placeholder="Selling price ₹"
->
-
+  placeholder="Selling price ₹">
 
 <input
   id="oldPrice"
   type="number"
-  placeholder="Old price ₹"
->
+  placeholder="Old price ₹">
 
 
-<!-- IMAGE UPLOAD -->
 <div class="file-box">
 
   <b>📷 Product Image</b>
@@ -375,8 +347,7 @@ header h2{
   <input
     id="imageFile"
     type="file"
-    accept="image/*"
-  >
+    accept="image/*">
 
   <small style="color:#666">
     Gallery se image select karo.
@@ -393,11 +364,11 @@ header h2{
 
 <textarea
   id="description"
-  placeholder="Product description">
-</textarea>
+  placeholder="Product description"></textarea>
 
 
 <button
+  type="button"
   class="add"
   onclick="addProduct()">
   ADD PRODUCT
@@ -411,58 +382,47 @@ header h2{
 
 <h2>✏️ Edit Product</h2>
 
-
 <input
   id="editName"
-  placeholder="Product name"
->
-
+  placeholder="Product name">
 
 <select id="editCategory">
-
   <option>T-Shirts</option>
   <option>Hoodies</option>
   <option>Jeans</option>
   <option>Pants</option>
   <option>Shirts</option>
   <option>Jackets</option>
-
 </select>
-
 
 <input
   id="editPrice"
   type="number"
-  placeholder="Selling price ₹"
->
-
+  placeholder="Selling price ₹">
 
 <input
   id="editOldPrice"
   type="number"
-  placeholder="Old price ₹"
->
-
+  placeholder="Old price ₹">
 
 <input
   id="editImage"
-  placeholder="Product image URL"
->
-
+  placeholder="Product image URL">
 
 <textarea
   id="editDescription"
-  placeholder="Description">
-</textarea>
-
+  placeholder="Description"></textarea>
 
 <button
+  type="button"
   class="add"
   onclick="saveEdit()">
   SAVE CHANGES
 </button>
 
-<button onclick="cancelEdit()">
+<button
+  type="button"
+  onclick="cancelEdit()">
   CANCEL
 </button>
 
@@ -488,9 +448,7 @@ header h2{
 <h2>🧾 Orders</h2>
 
 <div id="orders">
-
   <p>No orders yet.</p>
-
 </div>
 
 </div>
@@ -502,7 +460,6 @@ header h2{
 <!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <script>
 
 /* =================================
@@ -512,15 +469,8 @@ header h2{
 const SUPABASE_URL =
 "https://kykdfhmumkttibcdcigg.supabase.co";
 
-/*
-  IMPORTANT:
-  Yahan apni current Supabase
-  Publishable Key paste karo.
-*/
-
 const SUPABASE_PUBLISHABLE_KEY =
 "sb_publishable_aQGIGobtka8ZK_SZWx6z9A_C6XTHegW";
-
 
 const db =
 window.supabase.createClient(
@@ -534,7 +484,6 @@ window.supabase.createClient(
    ================================= */
 
 let products = [];
-
 let editId = null;
 
 
@@ -545,22 +494,17 @@ let editId = null;
 async function login(){
 
   const email =
-    document
-      .getElementById("adminEmail")
-      .value
-      .trim();
+    document.getElementById("adminEmail")
+      .value.trim();
 
   const password =
-    document
-      .getElementById("adminPass")
+    document.getElementById("adminPass")
       .value;
 
   const errorBox =
     document.getElementById("loginError");
 
-
   errorBox.textContent = "";
-
 
   if(!email || !password){
 
@@ -570,29 +514,41 @@ async function login(){
     return;
   }
 
+  try{
 
-  const {data,error} =
-    await db.auth.signInWithPassword({
+    const {data,error} =
+      await db.auth.signInWithPassword({
+        email:email,
+        password:password
+      });
 
-      email:email,
+    if(error){
 
-      password:password
+      errorBox.textContent =
+        "Login failed: " +
+        error.message;
 
-    });
+      return;
+    }
 
+    if(!data || !data.user){
 
-  if(error){
+      errorBox.textContent =
+        "Login nahi hua. Please try again.";
+
+      return;
+    }
+
+    await checkAdmin();
+
+  }catch(error){
+
+    console.error(error);
 
     errorBox.textContent =
-      "Login failed: " +
+      "Login error: " +
       error.message;
-
-    return;
   }
-
-
-  await checkAdmin();
-
 }
 
 
@@ -602,47 +558,82 @@ async function login(){
 
 async function checkAdmin(){
 
-  const {
-    data:{user}
-  } =
-    await db.auth.getUser();
+  try{
 
+    const {
+      data:{user},
+      error:userError
+    } =
+      await db.auth.getUser();
 
-  if(!user){
+    if(userError){
 
-    showLogin();
+      console.error(userError);
 
-    return;
-  }
+      showLogin();
 
+      return;
+    }
 
-  const {data,error} =
-    await db
-      .from("admins")
-      .select("user_id")
-      .eq("user_id",user.id)
-      .maybeSingle();
+    if(!user){
 
+      showLogin();
 
-  if(error || !data){
+      return;
+    }
 
-    await db.auth.signOut();
+    const {data,error} =
+      await db
+        .from("admins")
+        .select("user_id")
+        .eq("user_id",user.id)
+        .maybeSingle();
 
+    if(error){
+
+      console.error(error);
+
+      await db.auth.signOut();
+
+      document
+        .getElementById("loginError")
+        .textContent =
+        "Admin check failed: " +
+        error.message;
+
+      showLogin();
+
+      return;
+    }
+
+    if(!data){
+
+      await db.auth.signOut();
+
+      document
+        .getElementById("loginError")
+        .textContent =
+        "Is account ko admin permission nahi hai.";
+
+      showLogin();
+
+      return;
+    }
+
+    showPanel();
+
+  }catch(error){
+
+    console.error(error);
 
     document
       .getElementById("loginError")
       .textContent =
-      "Is account ko admin permission nahi hai.";
-
+      "Something went wrong: " +
+      error.message;
 
     showLogin();
-
-    return;
   }
-
-
-  showPanel();
-
 }
 
 
@@ -656,16 +647,12 @@ function showPanel(){
     .getElementById("login")
     .style.display="none";
 
-
   document
     .getElementById("panel")
     .style.display="block";
 
-
   loadProducts();
-
   loadOrders();
-
 }
 
 
@@ -679,11 +666,9 @@ function showLogin(){
     .getElementById("login")
     .style.display="flex";
 
-
   document
     .getElementById("panel")
     .style.display="none";
-
 }
 
 
@@ -696,7 +681,6 @@ async function logout(){
   await db.auth.signOut();
 
   showLogin();
-
 }
 
 
@@ -715,43 +699,32 @@ async function uploadProductImage(){
   const file =
     input.files[0];
 
-
   if(!file){
-
     return null;
   }
-
 
   if(!file.type.startsWith("image/")){
 
-    alert(
-      "Sirf image file select karo."
-    );
+    alert("Sirf image file select karo.");
 
     return null;
   }
-
 
   if(file.size > 5 * 1024 * 1024){
 
-    alert(
-      "Image 5MB se chhoti honi chahiye."
-    );
+    alert("Image 5MB se chhoti honi chahiye.");
 
     return null;
   }
 
-
   status.textContent =
     "⏳ Image upload ho rahi hai...";
-
 
   const extension =
     file.name
       .split(".")
       .pop()
       .toLowerCase();
-
 
   const fileName =
     Date.now() +
@@ -762,10 +735,8 @@ async function uploadProductImage(){
     "." +
     extension;
 
-
   const filePath =
     "products/" + fileName;
-
 
   const {error} =
     await db.storage
@@ -779,7 +750,6 @@ async function uploadProductImage(){
         }
       );
 
-
   if(error){
 
     status.textContent = "";
@@ -792,21 +762,15 @@ async function uploadProductImage(){
     return null;
   }
 
-
   const {data} =
     db.storage
       .from("product-images")
-      .getPublicUrl(
-        filePath
-      );
-
+      .getPublicUrl(filePath);
 
   status.textContent =
     "✅ Image uploaded";
 
-
   return data.publicUrl;
-
 }
 
 
@@ -825,7 +789,6 @@ async function loadProducts(){
         {ascending:true}
       );
 
-
   if(error){
 
     alert(
@@ -836,13 +799,9 @@ async function loadProducts(){
     return;
   }
 
-
-  products =
-    data || [];
-
+  products = data || [];
 
   renderProducts();
-
 }
 
 
@@ -857,10 +816,8 @@ function renderProducts(){
     .textContent =
     products.length;
 
-
   const box =
     document.getElementById("products");
-
 
   if(products.length === 0){
 
@@ -869,7 +826,6 @@ function renderProducts(){
 
     return;
   }
-
 
   box.innerHTML =
     products
@@ -885,49 +841,36 @@ function renderProducts(){
         <div>
 
           <small>
-            ${escapeHTML(
-              p.category || ""
-            )}
+            ${escapeHTML(p.category || "")}
           </small>
 
           <h3>
-            ${escapeHTML(
-              p.name || ""
-            )}
+            ${escapeHTML(p.name || "")}
           </h3>
 
           <p class="price">
-
             ₹${p.price}
-
             <del>
               ₹${p.old_price || p.price}
             </del>
-
           </p>
 
           <p>
-            ${escapeHTML(
-              p.description || ""
-            )}
+            ${escapeHTML(p.description || "")}
           </p>
 
-
           <button
+            type="button"
             class="edit"
             onclick="editProduct(${p.id})">
-
             ✏️ EDIT
-
           </button>
 
-
           <button
+            type="button"
             class="delete"
             onclick="deleteProduct(${p.id})">
-
             🗑️ DELETE
-
           </button>
 
         </div>
@@ -936,7 +879,6 @@ function renderProducts(){
 
     `)
     .join("");
-
 }
 
 
@@ -947,40 +889,28 @@ function renderProducts(){
 async function addProduct(){
 
   const name =
-    document
-      .getElementById("name")
-      .value
-      .trim();
-
+    document.getElementById("name")
+      .value.trim();
 
   const category =
-    document
-      .getElementById("category")
+    document.getElementById("category")
       .value;
-
 
   const price =
     Number(
-      document
-        .getElementById("price")
+      document.getElementById("price")
         .value
     );
-
 
   const oldPrice =
     Number(
-      document
-        .getElementById("oldPrice")
+      document.getElementById("oldPrice")
         .value
     );
 
-
   const description =
-    document
-      .getElementById("description")
-      .value
-      .trim();
-
+    document.getElementById("description")
+      .value.trim();
 
   if(!name || !price){
 
@@ -991,30 +921,16 @@ async function addProduct(){
     return;
   }
 
-
-  /*
-    IMAGE UPLOAD
-  */
-
   const image =
     await uploadProductImage();
 
-
   const selectedFile =
-    document
-      .getElementById("imageFile")
+    document.getElementById("imageFile")
       .files[0];
 
-
   if(selectedFile && !image){
-
     return;
   }
-
-
-  /*
-    PRODUCT INSERT
-  */
 
   const {error} =
     await db
@@ -1022,9 +938,7 @@ async function addProduct(){
       .insert({
 
         name:name,
-
         category:category,
-
         price:price,
 
         old_price:
@@ -1037,9 +951,7 @@ async function addProduct(){
         description:
           description ||
           "Premium quality product."
-
       });
-
 
   if(error){
 
@@ -1051,48 +963,18 @@ async function addProduct(){
     return;
   }
 
-
-  /*
-    RESET FORM
-  */
-
-  document
-    .getElementById("name")
-    .value="";
-
-
-  document
-    .getElementById("price")
-    .value="";
-
-
-  document
-    .getElementById("oldPrice")
-    .value="";
-
-
-  document
-    .getElementById("imageFile")
-    .value="";
-
-
-  document
-    .getElementById("description")
-    .value="";
-
-
-  document
-    .getElementById("uploadStatus")
-    .textContent="";
-
+  document.getElementById("name").value="";
+  document.getElementById("price").value="";
+  document.getElementById("oldPrice").value="";
+  document.getElementById("imageFile").value="";
+  document.getElementById("description").value="";
+  document.getElementById("uploadStatus").textContent="";
 
   await loadProducts();
-
 
   alert(
     "Product added successfully 🎉"
   );
-
 }
 
 
@@ -1104,66 +986,40 @@ function editProduct(id){
 
   const p =
     products.find(
-      x =>
-        Number(x.id) ===
-        Number(id)
+      x => Number(x.id) === Number(id)
     );
-
 
   if(!p)return;
 
-
   editId = id;
-
 
   document
     .getElementById("editBox")
     .style.display="block";
 
+  document.getElementById("editName").value =
+    p.name || "";
 
-  document
-    .getElementById("editName")
-    .value =
-      p.name || "";
+  document.getElementById("editCategory").value =
+    p.category || "T-Shirts";
 
+  document.getElementById("editPrice").value =
+    p.price || "";
 
-  document
-    .getElementById("editCategory")
-    .value =
-      p.category ||
-      "T-Shirts";
+  document.getElementById("editOldPrice").value =
+    p.old_price || "";
 
+  document.getElementById("editImage").value =
+    p.image || "";
 
-  document
-    .getElementById("editPrice")
-    .value =
-      p.price || "";
-
-
-  document
-    .getElementById("editOldPrice")
-    .value =
-      p.old_price || "";
-
-
-  document
-    .getElementById("editImage")
-    .value =
-      p.image || "";
-
-
-  document
-    .getElementById("editDescription")
-    .value =
-      p.description || "";
-
+  document.getElementById("editDescription").value =
+    p.description || "";
 
   document
     .getElementById("editBox")
     .scrollIntoView({
       behavior:"smooth"
     });
-
 }
 
 
@@ -1174,47 +1030,32 @@ function editProduct(id){
 async function saveEdit(){
 
   const name =
-    document
-      .getElementById("editName")
-      .value
-      .trim();
-
+    document.getElementById("editName")
+      .value.trim();
 
   const category =
-    document
-      .getElementById("editCategory")
+    document.getElementById("editCategory")
       .value;
-
 
   const price =
     Number(
-      document
-        .getElementById("editPrice")
+      document.getElementById("editPrice")
         .value
     );
-
 
   const oldPrice =
     Number(
-      document
-        .getElementById("editOldPrice")
+      document.getElementById("editOldPrice")
         .value
     );
 
-
   const image =
-    document
-      .getElementById("editImage")
-      .value
-      .trim();
-
+    document.getElementById("editImage")
+      .value.trim();
 
   const description =
-    document
-      .getElementById("editDescription")
-      .value
-      .trim();
-
+    document.getElementById("editDescription")
+      .value.trim();
 
   if(!name || !price){
 
@@ -1225,16 +1066,13 @@ async function saveEdit(){
     return;
   }
 
-
   const {error} =
     await db
       .from("products")
       .update({
 
         name:name,
-
         category:category,
-
         price:price,
 
         old_price:
@@ -1242,15 +1080,10 @@ async function saveEdit(){
 
         image:image,
 
-        description:
-          description
+        description:description
 
       })
-      .eq(
-        "id",
-        editId
-      );
-
+      .eq("id",editId);
 
   if(error){
 
@@ -1262,17 +1095,13 @@ async function saveEdit(){
     return;
   }
 
-
   cancelEdit();
 
-
   await loadProducts();
-
 
   alert(
     "Product updated successfully ✅"
   );
-
 }
 
 
@@ -1284,11 +1113,9 @@ function cancelEdit(){
 
   editId=null;
 
-
   document
     .getElementById("editBox")
     .style.display="none";
-
 }
 
 
@@ -1298,22 +1125,15 @@ function cancelEdit(){
 
 async function deleteProduct(id){
 
-  if(
-    !confirm(
-      "Product delete karna hai?"
-    )
-  ){
-
+  if(!confirm("Product delete karna hai?")){
     return;
   }
-
 
   const {error} =
     await db
       .from("products")
       .delete()
       .eq("id",id);
-
 
   if(error){
 
@@ -1325,14 +1145,11 @@ async function deleteProduct(id){
     return;
   }
 
-
   await loadProducts();
-
 
   alert(
     "Product deleted ✅"
   );
-
 }
 
 
@@ -1351,35 +1168,27 @@ async function loadOrders(){
         {ascending:false}
       );
 
-
   if(error){
 
     document
       .getElementById("orders")
       .innerHTML =
       "<p>Orders load error: " +
-      escapeHTML(
-        error.message
-      ) +
+      escapeHTML(error.message) +
       "</p>";
 
     return;
   }
 
-
-  const orders =
-    data || [];
-
+  const orders = data || [];
 
   document
     .getElementById("totalOrders")
     .textContent =
     orders.length;
 
-
   const box =
     document.getElementById("orders");
-
 
   if(orders.length === 0){
 
@@ -1389,89 +1198,102 @@ async function loadOrders(){
     return;
   }
 
-
   box.innerHTML =
     orders
-      .map(o => `
+      .map(o => {
 
-      <div class="order">
+        const status =
+          o.status || "Pending";
 
-        <b>
-          Order ID:
-          ${escapeHTML(
-            o.order_id || ""
-          )}
-        </b>
+        return `
+
+        <div class="order">
+
+          <b>
+            Order ID:
+            ${escapeHTML(o.order_id || "")}
+          </b>
+
+          <p>
+
+            Customer:
+            ${escapeHTML(o.name || "")}
+
+            <br>
+
+            Phone:
+            ${escapeHTML(o.phone || "")}
+
+            <br>
+
+            Address:
+            ${escapeHTML(o.address || "")}
+
+            <br>
+
+            Pincode:
+            ${escapeHTML(o.pin || "")}
+
+          </p>
+
+          <b>
+            Total: ₹${o.total || 0}
+          </b>
+
+          <p>
+            <b>Current Status:</b>
+            ${escapeHTML(status)}
+          </p>
+
+          <select id="status-${o.id}">
+
+            <option
+              value="Pending"
+              ${status === "Pending" ? "selected" : ""}>
+              Pending
+            </option>
+
+            <option
+              value="Confirmed"
+              ${status === "Confirmed" ? "selected" : ""}>
+              Confirmed
+            </option>
+
+            <option
+              value="Shipped"
+              ${status === "Shipped" ? "selected" : ""}>
+              Shipped
+            </option>
+
+            <option
+              value="Delivered"
+              ${status === "Delivered" ? "selected" : ""}>
+              Delivered
+            </option>
+
+            <option
+              value="Cancelled"
+              ${status === "Cancelled" ? "selected" : ""}>
+              Cancelled
+            </option>
+
+          </select>
+
+          <button
+            type="button"
+            class="add"
+            onclick="updateOrderStatus(${o.id})">
+            UPDATE STATUS
+          </button>
+
+        </div>
+
+        `;
+      })
+      .join("");
+}
 
 
-        <p>
-
-          Customer:
-          ${escapeHTML(
-            o.name || ""
-          )}
-
-          <br>
-
-          Phone:
-          ${escapeHTML(
-            o.phone || ""
-          )}
-
-          <br>
-
-          Address:
-          ${escapeHTML(
-            o.address || ""
-          )}
-
-          <br>
-
-          Pincode:
-          ${escapeHTML(
-            o.pin || ""
-          )}
-
-        </p>
-
-
-        <b>
-          Total: ₹${o.total || 0}
-        </b>
-
-
-        <p>
-  <b>Status:</b>
-  ${escapeHTML(o.status || "Pending")}
-</p>
-
-<select id="status-${o.id}">
-  <option value="Pending" ${o.status === "Pending" ? "selected" : ""}>
-    Pending
-  </option>
-
-  <option value="Confirmed" ${o.status === "Confirmed" ? "selected" : ""}>
-    Confirmed
-  </option>
-
-  <option value="Shipped" ${o.status === "Shipped" ? "selected" : ""}>
-    Shipped
-  </option>
-
-  <option value="Delivered" ${o.status === "Delivered" ? "selected" : ""}>
-    Delivered
-  </option>
-
-  <option value="Cancelled" ${o.status === "Cancelled" ? "selected" : ""}>
-    Cancelled
-  </option>
-</select>
-
-<button
-  class="add"
-  onclick="updateOrderStatus(${o.id})">
-  UPDATE STATUS
-</button>
 /* =================================
    UPDATE ORDER STATUS
    ================================= */
@@ -1483,7 +1305,9 @@ async function updateOrderStatus(orderId){
       "status-" + orderId
     );
 
-  if(!select) return;
+  if(!select){
+    return;
+  }
 
   const newStatus =
     select.value;
@@ -1492,93 +1316,12 @@ async function updateOrderStatus(orderId){
     await db
       .from("orders")
       .update({
-        status: newStatus
+        status:newStatus
       })
-      .eq("id", orderId);
+      .eq("id",orderId);
 
   if(error){
 
     alert(
       "Status update failed: " +
-      error.message
-    );
-
-    return;
-  }
-
-  alert(
-    "Order status updated ✅"
-  );
-
-  await loadOrders();
-
-}
-
-
-/* =================================
-   SECURITY HELPER
-   ================================= */
-
-function escapeHTML(value){
-
-  return String(value)
-
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-
-    .replace(
-      /</g,
-      "&lt;"
-    )
-
-    .replace(
-      />/g,
-      "&gt;"
-    )
-
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-
-    .replace(
-      /'/g,
-      "&#039;"
-    );
-
-}
-
-
-/* =================================
-   START
-   ================================= */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  async()=>{
-
-    const {
-      data:{session}
-    } =
-      await db.auth.getSession();
-
-
-    if(session){
-
-      await checkAdmin();
-
-    }else{
-
-      showLogin();
-
-    }
-
-  }
-);
-
-</script>
-
-</body>
-    </html>
+      error.mess
