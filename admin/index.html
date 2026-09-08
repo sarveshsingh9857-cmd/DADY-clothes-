@@ -1320,8 +1320,76 @@ async function updateOrderStatus(orderId){
       })
       .eq("id",orderId);
 
-  if(error){
+if(error){
 
-    alert(
-      "Status update failed: " +
-      error.mess
+  alert(
+    "Status update failed: " +
+    error.message
+  );
+
+  return;
+}
+
+alert(
+  "Order status updated ✅"
+);
+
+await loadOrders();
+
+}
+
+
+/* =================================
+   ESCAPE HTML
+   ================================= */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+/* =================================
+   CHECK SESSION ON PAGE LOAD
+   ================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  async function(){
+
+    try{
+
+      const {
+        data:{session}
+      } = await db.auth.getSession();
+
+      if(session){
+
+        await checkAdmin();
+
+      }else{
+
+        showLogin();
+
+      }
+
+    }catch(error){
+
+      console.error(error);
+
+      showLogin();
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
