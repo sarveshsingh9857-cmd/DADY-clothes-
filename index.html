@@ -36,7 +36,7 @@
     <button class="icon-btn" aria-label="Search"
       onclick="document.getElementById('searchInput')?.focus()">⌕</button>
 
-    <button class="icon-btn" aria-label="Account">♙</button>
+    <button class="icon-btn" aria-label="Profile" onclick="openProfile()">👤</button>
 
     <button class="cartbtn" onclick="openCart()">
       🛍️ <i id="count">0</i>
@@ -316,7 +316,79 @@
   </div>
 
 </div>
+<!-- PROFILE / LOGIN MODAL -->
+<div id="profileModal" class="modal">
 
+  <div class="checkout-box profile-box">
+
+    <button class="close-btn" onclick="closeProfile()">×</button>
+
+    <div id="loginView">
+
+      <div class="checkout-icon">👤</div>
+
+      <h2>Welcome to DADY CLOTHES</h2>
+
+      <p class="checkout-sub">
+        Login or create your account
+      </p>
+
+      <input
+        id="customerEmail"
+        type="email"
+        placeholder="Email address"
+      >
+
+      <input
+        id="customerPassword"
+        type="password"
+        placeholder="Password"
+      >
+
+      <button class="btn" onclick="customerLogin()">
+        LOGIN
+      </button>
+
+      <button
+        class="btn"
+        style="margin-top:10px;background:#eee;color:#111"
+        onclick="customerSignup()"
+      >
+        CREATE ACCOUNT
+      </button>
+
+      <p id="authMsg"></p>
+
+    </div>
+
+
+    <div id="profileView" style="display:none">
+
+      <div class="checkout-icon">👤</div>
+
+      <h2>My Profile</h2>
+
+      <p id="profileEmail"></p>
+
+      <button class="btn" onclick="showMyOrders()">
+        📦 MY ORDERS
+      </button>
+
+      <button
+        class="btn"
+        style="margin-top:10px"
+        onclick="customerLogout()"
+      >
+        LOGOUT
+      </button>
+
+      <p id="profileMsg"></p>
+
+    </div>
+
+  </div>
+
+        </div>
 
 <!-- FOOTER -->
 <footer id="contact">
