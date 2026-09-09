@@ -11,15 +11,20 @@
 
 <!-- TOP BAR -->
 <div class="topbar">
-  <span>🔥 FREE SHIPPING ON ORDERS ABOVE ₹999 | CASH ON DELIVERY AVAILABLE 🚚</span>
-  <span>Follow us&nbsp; ◎ &nbsp;◉ &nbsp;◌</span>
+  <span>FREE SHIPPING ON ORDERS ABOVE ₹999 &nbsp; • &nbsp; CASH ON DELIVERY AVAILABLE</span>
+  <span>Follow us &nbsp; ◎ &nbsp; ◉ &nbsp; ◌</span>
 </div>
+
 
 <!-- HEADER -->
 <header>
+
   <a href="#home" class="logo">
     <span class="hanger">♧</span>
-    <span>DADY<small>CLOTHES</small></span>
+    <span>
+      DADY
+      <small>CLOTHES</small>
+    </span>
   </a>
 
   <nav>
@@ -33,40 +38,88 @@
   </nav>
 
   <div class="header-icons">
-    <button class="icon-btn" aria-label="Search"
-      onclick="document.getElementById('searchInput')?.focus()">⌕</button>
 
-    <button class="icon-btn" aria-label="Profile" onclick="openProfile()">👤</button>
+    <button
+      class="icon-btn"
+      aria-label="Search"
+      onclick="document.getElementById('searchInput')?.focus()">
+      ⌕
+    </button>
+
+    <button
+      class="icon-btn"
+      aria-label="Profile"
+      onclick="openProfile()">
+      👤
+    </button>
 
     <button class="cartbtn" onclick="openCart()">
       🛍️ <i id="count">0</i>
     </button>
+
   </div>
+
 </header>
 
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
+
 <section id="home" class="hero">
 
   <div class="hero-content">
-    <div class="script">New Collection</div>
+
+    <div class="script">
+      NEW COLLECTION • 2026
+    </div>
 
     <h1>
-      FASHION THAT<br>
-      <strong>DEFINES YOU</strong>
+      STYLE THAT<br>
+      <strong>SPEAKS YOU.</strong>
     </h1>
 
     <p>
-      Trendy clothes, premium quality<br>
-      & best prices — only at <b>Dady Clothes.</b>
+      Premium streetwear made for everyday confidence.
+      Discover oversized tees, hoodies, shirts and more.
     </p>
 
     <a href="#shop" class="hero-btn">
-      SHOP NOW <span>→</span>
+      SHOP NOW
+      <span>→</span>
     </a>
+
+    <div class="hero-dots">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+    </div>
+
   </div>
 
+
+  <!-- HERO VISUAL -->
+
+  <div class="hero-visual">
+
+    <div class="hero-image-wrap">
+
+      <img
+        src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85"
+        alt="Dady Clothes Fashion">
+
+      <div class="hero-image-label">
+        <small>DADY CLOTHES</small>
+        <b>WEAR YOUR<br>VIBE.</b>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- FLOATING BENEFITS -->
+
   <div class="hero-benefits">
+
     <div>
       <strong>♧</strong>
       <b>FREE SHIPPING</b>
@@ -75,26 +128,39 @@
 
     <div>
       <strong>♕</strong>
-      <b>BEST QUALITY</b>
-      <small>Premium Fabric</small>
+      <b>PREMIUM QUALITY</b>
+      <small>Quality fabrics & finish</small>
     </div>
 
     <div>
       <strong>↻</strong>
       <b>EASY RETURNS</b>
-      <small>7 Days Return Policy</small>
+      <small>7 days return policy</small>
     </div>
+
   </div>
 
 </section>
 
 
-<!-- CATEGORIES -->
+<!-- ================= CATEGORIES ================= -->
+
 <section id="categories" class="categories-section">
 
-  <div class="section-title">
-    <span></span>
-    <h2>SHOP BY CATEGORY</h2>
+  <div class="section-heading-row">
+
+    <div class="section-title">
+      <span></span>
+      <div>
+        <small>EXPLORE</small>
+        <h2>SHOP BY CATEGORY</h2>
+      </div>
+    </div>
+
+    <span class="heading-note">
+      Find your everyday style
+    </span>
+
   </div>
 
   <div id="cat"></div>
@@ -102,65 +168,188 @@
 </section>
 
 
-<!-- SHOP -->
+<!-- ================= SHOP ================= -->
+
 <section id="shop" class="shop-section">
 
   <div class="shop-heading">
+
     <div class="section-title">
+
       <span></span>
-      <h2 id="new">NEW ARRIVALS</h2>
+
+      <div>
+        <small>JUST DROPPED</small>
+        <h2 id="new">NEW ARRIVALS</h2>
+      </div>
+
     </div>
 
     <button onclick="loadProducts()" class="view-all">
       VIEW ALL →
     </button>
+
   </div>
 
+
   <div class="search-box">
+
+    <span>⌕</span>
+
     <input
       id="searchInput"
       type="search"
-      placeholder="🔎  Search products..."
-      oninput="searchProducts()"
-    >
+      placeholder="Search for clothes..."
+      oninput="searchProducts()">
+
   </div>
 
-  <div id="grid"></div>
+
+  <div class="shop-layout">
+
+    <div id="grid"></div>
+
+    <!-- SIDE STYLE CARD -->
+
+    <aside class="style-card">
+
+      <div class="style-card-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=80"
+          alt="Fashion">
+
+      </div>
+
+      <div class="style-card-content">
+
+        <small>DADY CLOTHES</small>
+
+        <h3>
+          Premium<br>
+          Fashion<br>
+          For You.
+        </h3>
+
+        <div class="style-point">
+          <span>✓</span>
+          <p>
+            <b>Free Shipping</b>
+            Orders above ₹999
+          </p>
+        </div>
+
+        <div class="style-point">
+          <span>✓</span>
+          <p>
+            <b>Cash On Delivery</b>
+            Pay at your doorstep
+          </p>
+        </div>
+
+        <div class="style-point">
+          <span>✓</span>
+          <p>
+            <b>Easy Returns</b>
+            7 days return policy
+          </p>
+        </div>
+
+      </div>
+
+    </aside>
+
+  </div>
 
 </section>
 
 
-<!-- PROMO BANNERS -->
+<!-- ================= PROMO BANNERS ================= -->
+
 <section id="best" class="promo-section">
 
   <div class="promo-card promo-one">
-    <div>
+
+    <img
+      src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"
+      alt="T Shirts">
+
+    <div class="promo-overlay"></div>
+
+    <div class="promo-content">
+
       <small>OUR COLLECTION</small>
-      <h3>BEST<br>SELLERS</h3>
-      <a href="#shop">SHOP NOW →</a>
+
+      <h3>
+        EVERYDAY<br>
+        ESSENTIALS
+      </h3>
+
+      <a href="#shop">
+        SHOP NOW →
+      </a>
+
     </div>
+
   </div>
+
 
   <div class="promo-card promo-two">
-    <div>
+
+    <img
+      src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=80"
+      alt="Streetwear">
+
+    <div class="promo-overlay"></div>
+
+    <div class="promo-content">
+
       <small>NEW DROP</small>
-      <h3>NEW HOODIES<br>COLLECTION</h3>
-      <a href="#shop">SHOP NOW →</a>
+
+      <h3>
+        STREETWEAR<br>
+        COLLECTION
+      </h3>
+
+      <a href="#shop">
+        SHOP NOW →
+      </a>
+
     </div>
+
   </div>
 
+
   <div class="promo-card promo-three">
-    <div>
+
+    <img
+      src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=80"
+      alt="Fashion">
+
+    <div class="promo-overlay"></div>
+
+    <div class="promo-content">
+
       <small>LIMITED OFFER</small>
-      <h3>UPTO<br>50% OFF</h3>
-      <a href="#shop">SHOP NOW →</a>
+
+      <h3>
+        UPTO<br>
+        50% OFF
+      </h3>
+
+      <a href="#shop">
+        SHOP NOW →
+      </a>
+
     </div>
+
   </div>
 
 </section>
 
 
-<!-- FEATURES -->
+<!-- ================= FEATURES ================= -->
+
 <section class="features">
 
   <div>
@@ -175,7 +364,7 @@
     <span>♢</span>
     <div>
       <b>SECURE PAYMENT</b>
-      <small>100% secure payments</small>
+      <small>Safe & secure checkout</small>
     </div>
   </div>
 
@@ -191,38 +380,56 @@
     <span>◇</span>
     <div>
       <b>BEST PRICES</b>
-      <small>Get the best deals</small>
+      <small>Premium deals everyday</small>
     </div>
   </div>
 
 </section>
 
 
-<!-- ABOUT -->
+<!-- ================= ABOUT ================= -->
+
 <section id="about" class="about-section">
+
   <div>
-    <small>WELCOME TO DADY CLOTHES</small>
-    <h2>Streetwear made<br><strong>for you.</strong></h2>
+
+    <small>
+      WELCOME TO DADY CLOTHES
+    </small>
+
+    <h2>
+      Your style.<br>
+      <strong>Your rules.</strong>
+    </h2>
+
   </div>
 
   <p>
     Discover premium streetwear, oversized tees, hoodies,
-    jeans and more. We bring trendy fashion with quality
-    fabrics and prices you will love.
+    jeans and more. DADY CLOTHES brings modern fashion,
+    comfortable fabrics and great prices together in one place.
   </p>
+
 </section>
 
 
-<!-- PRODUCT DETAIL MODAL -->
+<!-- ================= PRODUCT DETAIL MODAL ================= -->
+
 <div id="productModal" class="modal">
+
   <div class="product-modal-box">
 
     <button class="close-btn" onclick="closeProduct()">×</button>
 
-    <img id="detailImage" src="" alt="Product">
+    <img
+      id="detailImage"
+      src=""
+      alt="Product">
 
     <div class="detail-content">
+
       <small id="detailCategory"></small>
+
       <h2 id="detailName"></h2>
 
       <p class="detail-price">
@@ -246,41 +453,60 @@
       <button class="btn" id="detailAddButton">
         ADD TO CART
       </button>
+
     </div>
 
   </div>
+
 </div>
 
 
-<!-- CART -->
+<!-- ================= CART ================= -->
+
 <div id="drawer">
 
-  <button class="drawer-close" onclick="closeCart()">×</button>
+  <button
+    class="drawer-close"
+    onclick="closeCart()">
+    ×
+  </button>
 
   <h2>Your Cart</h2>
 
   <div id="items"></div>
 
   <div class="cart-total">
+
     <span>Total</span>
+
     ₹<span id="total">0</span>
+
   </div>
 
-  <button class="btn" onclick="checkout()">
+  <button
+    class="btn"
+    onclick="checkout()">
     PLACE COD ORDER
   </button>
 
 </div>
 
 
-<!-- CHECKOUT -->
+<!-- ================= CHECKOUT ================= -->
+
 <div id="checkout" class="modal">
 
   <div class="checkout-box">
 
-    <button class="close-btn" onclick="hideCheckout()">×</button>
+    <button
+      class="close-btn"
+      onclick="hideCheckout()">
+      ×
+    </button>
 
-    <div class="checkout-icon">📦</div>
+    <div class="checkout-icon">
+      📦
+    </div>
 
     <h2>Cash on Delivery</h2>
 
@@ -288,26 +514,27 @@
       Enter your delivery details
     </p>
 
-    <input id="name" placeholder="Full name">
+    <input
+      id="name"
+      placeholder="Full name">
 
     <input
       id="phone"
       placeholder="Mobile number"
-      type="tel"
-    >
+      type="tel">
 
     <textarea
       id="address"
-      placeholder="Full delivery address"
-    ></textarea>
+      placeholder="Full delivery address"></textarea>
 
     <input
       id="pin"
       placeholder="Pincode"
-      type="number"
-    >
+      type="number">
 
-    <button class="btn" onclick="placeOrder()">
+    <button
+      class="btn"
+      onclick="placeOrder()">
       CONFIRM ORDER
     </button>
 
@@ -316,16 +543,25 @@
   </div>
 
 </div>
-<!-- PROFILE / LOGIN MODAL -->
+
+
+<!-- ================= PROFILE ================= -->
+
 <div id="profileModal" class="modal">
 
   <div class="checkout-box profile-box">
 
-    <button class="close-btn" onclick="closeProfile()">×</button>
+    <button
+      class="close-btn"
+      onclick="closeProfile()">
+      ×
+    </button>
 
     <div id="loginView">
 
-      <div class="checkout-icon">👤</div>
+      <div class="checkout-icon">
+        👤
+      </div>
 
       <h2>Welcome to DADY CLOTHES</h2>
 
@@ -336,24 +572,22 @@
       <input
         id="customerEmail"
         type="email"
-        placeholder="Email address"
-      >
+        placeholder="Email address">
 
       <input
         id="customerPassword"
         type="password"
-        placeholder="Password"
-      >
+        placeholder="Password">
 
-      <button class="btn" onclick="customerLogin()">
+      <button
+        class="btn"
+        onclick="customerLogin()">
         LOGIN
       </button>
 
       <button
-        class="btn"
-        style="margin-top:10px;background:#eee;color:#111"
-        onclick="customerSignup()"
-      >
+        class="btn create-account-btn"
+        onclick="customerSignup()">
         CREATE ACCOUNT
       </button>
 
@@ -362,23 +596,27 @@
     </div>
 
 
-    <div id="profileView" style="display:none">
+    <div
+      id="profileView"
+      style="display:none">
 
-      <div class="checkout-icon">👤</div>
+      <div class="checkout-icon">
+        👤
+      </div>
 
       <h2>My Profile</h2>
 
       <p id="profileEmail"></p>
 
-      <button class="btn" onclick="showMyOrders()">
+      <button
+        class="btn"
+        onclick="showMyOrders()">
         📦 MY ORDERS
       </button>
 
       <button
-        class="btn"
-        style="margin-top:10px"
-        onclick="customerLogout()"
-      >
+        class="btn logout-btn"
+        onclick="customerLogout()">
         LOGOUT
       </button>
 
@@ -388,75 +626,112 @@
 
   </div>
 
-        </div>
+</div>
 
-<!-- FOOTER -->
+
+<!-- ================= FOOTER ================= -->
+
 <footer id="contact">
 
   <div class="footer-main">
 
     <div class="footer-brand">
+
       <div class="footer-logo">
+
         <span>♧</span>
-        <b>DADY<small>CLOTHES</small></b>
+
+        <b>
+          DADY
+          <small>CLOTHES</small>
+        </b>
+
       </div>
 
       <p>
         Trendy fashion at the best prices.<br>
-        Premium quality. 100% trusted.
+        Premium quality. Made for your vibe.
       </p>
 
       <div class="socials">
         ◎ &nbsp; ◉ &nbsp; f &nbsp; ▶
       </div>
+
     </div>
 
 
     <div>
+
       <h4>QUICK LINKS</h4>
+
       <a href="#home">Home</a>
       <a href="#shop">Shop</a>
+      <a href="#categories">Categories</a>
       <a href="#about">About Us</a>
       <a href="#contact">Contact Us</a>
-      <a href="#shop">Track Order</a>
-      <a href="#shop">Size Guide</a>
+
     </div>
 
 
     <div>
+
       <h4>CUSTOMER CARE</h4>
+
       <a href="#">Shipping Policy</a>
       <a href="#">Return & Refund</a>
       <a href="#">Privacy Policy</a>
       <a href="#">Terms & Conditions</a>
       <a href="#">FAQ's</a>
+
     </div>
 
 
     <div>
+
       <h4>CONTACT US</h4>
+
       <p>☎ +91 98765 43210</p>
       <p>✉ support@dadyclothes.com</p>
       <p>⌖ India</p>
+
     </div>
 
 
     <div>
+
       <h4>NEWSLETTER</h4>
-      <p>Get updates about new arrivals<br>
-      and exclusive offers.</p>
+
+      <p>
+        Get updates about new arrivals
+        and exclusive offers.
+      </p>
 
       <div class="newsletter">
-        <input placeholder="Enter your email">
-        <button>➤</button>
+
+        <input
+          placeholder="Enter your email">
+
+        <button>
+          ➤
+        </button>
+
       </div>
+
     </div>
 
   </div>
 
+
   <div class="footer-bottom">
-    <span>© 2025 Dady Clothes. All Rights Reserved.</span>
-    <span>Designed with ♥ for fashion lovers</span>
+
+    <span>
+      © 2026 DADY CLOTHES. All Rights Reserved.
+    </span>
+
+    <span>
+      Designed with ♥ for fashion lovers
+    </span>
+
   </div>
 
 </footer>
@@ -465,8 +740,8 @@
 <!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- YOUR EXISTING APP -->
+<!-- EXISTING APP — DO NOT CHANGE -->
 <script src="app.js?v=3"></script>
 
 </body>
-      </html>
+  </html>
