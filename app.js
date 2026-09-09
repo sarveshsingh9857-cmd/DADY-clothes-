@@ -662,7 +662,18 @@ if (!session || !session.user) {
     "Order place karne ke liye pehle login karo.";
   return;
 }
-
+const { error } = await db
+  .from("orders")
+  .insert({
+    order_id: orderId,
+    user_id: session.user.id,
+    name,
+    phone,
+    address,
+    pin,
+    total,
+    status: "Pending"
+  });
     if (error) {
       console.error(error);
       msg.textContent =
