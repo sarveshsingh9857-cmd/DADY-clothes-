@@ -653,17 +653,15 @@ async function placeOrder() {
 
   try {
 
-    const { error } = await db
-      .from("orders")
-      .insert({
-        order_id: orderId,
-        name,
-        phone,
-        address,
-        pin,
-        total,
-        status: "Pending"
-      });
+    const {
+  data: { session }
+} = await db.auth.getSession();
+
+if (!session || !session.user) {
+  msg.textContent =
+    "Order place karne ke liye pehle login karo.";
+  return;
+}
 
     if (error) {
       console.error(error);
@@ -980,10 +978,96 @@ async function customerLogout() {
 
 /* MY ORDERS - TEMPORARY */
 
-function showMyOrders() {
+async function showMyOrders() {
 
-  alert(
-    "My Orders system next step me connect karenge."
-  );
+  const profileView =
+    document.getElementById("profileView");
 
-      }
+  if (!profileView) return;
+
+  const {
+    data: { session }
+  } = await db.auth.getSession();
+
+  if (!session || !session.user) {
+    alert("Please login first.");
+    return;
+  }
+
+  profileView.innerHTML = `
+    <button class="close-btn" onclick="closeProfile()">×</button>
+
+    <div class="checkout-icon">📦</div>
+
+    <h2>My Orders</h2>
+
+    <div id="myOrdersList">
+      Loading your orders...
+    </div>
+
+    <button
+      class="btn"
+      style="margin-top:15px"
+      onclick="checkCustomerSession()"
+    >
+      ← BACK TO PROFILE
+    </button>
+  `;
+
+  const { data, error } = await db
+    .from("orders")
+    .select("*")
+    .eq("user_id", session.user.id)
+    .order("id", { ascending: false });
+
+  const ordersBox =
+    document.getElementById("myOrdersList");
+
+  if (error) {
+    console.error(error);
+    ordersBox.innerHTML =
+      "<p>Orders load nahi ho rahe.</p>";
+    return;
+  }
+
+  if (!data || !data.length) {
+    ordersBox.innerHTML = `
+      <div style="padding:25px 5px;text-align:center">
+        <div style="font-size:40px">📦</div>
+        <h3>No orders yet</h3>
+        <p style="color:#777">
+          Aapke orders yahan dikhai denge.
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  ordersBox.innerHTML = data.map(order => `
+    <div style="
+      border:1px solid #ddd;
+      border-radius:10px;
+      padding:15px;
+      margin:12px 0;
+      text-align:left;
+    ">
+      <strong>Order #${escapeHTML(order.order_id)}</strong>
+
+      <p>
+        Amount: ₹${Number(order.total || 0)}
+      </p>
+
+      <p>
+        Status:
+        <strong>${escapeHTML(order.status || "Pending")}</strong>
+      </p>
+
+      <p style="color:#777">
+        Payment: Cash on Delivery
+      </p>
+    </div>
+  `).join("");
+}
+
+  
+    
