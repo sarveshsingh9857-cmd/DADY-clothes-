@@ -750,3 +750,240 @@ document.addEventListener("DOMContentLoaded", function() {
   loadProducts();
 
 });
+/* =========================
+CUSTOMER AUTH / PROFILE
+========================= */
+
+function openProfile() {
+
+  const modal = document.getElementById("profileModal");
+
+  if (!modal) return;
+
+  modal.classList.add("show");
+
+  checkCustomerSession();
+}
+
+
+function closeProfile() {
+
+  document
+    .getElementById("profileModal")
+    ?.classList.remove("show");
+
+}
+
+
+async function checkCustomerSession() {
+
+  const loginView =
+    document.getElementById("loginView");
+
+  const profileView =
+    document.getElementById("profileView");
+
+  const profileEmail =
+    document.getElementById("profileEmail");
+
+  if (!loginView || !profileView) return;
+
+  const {
+    data: { session }
+  } = await db.auth.getSession();
+
+  if (session && session.user) {
+
+    loginView.style.display = "none";
+    profileView.style.display = "block";
+
+    if (profileEmail) {
+      profileEmail.textContent =
+        session.user.email;
+    }
+
+  } else {
+
+    loginView.style.display = "block";
+    profileView.style.display = "none";
+
+  }
+}
+
+
+/* CUSTOMER LOGIN */
+
+async function customerLogin() {
+
+  const email =
+    document.getElementById("customerEmail")
+      ?.value.trim();
+
+  const password =
+    document.getElementById("customerPassword")
+      ?.value;
+
+  const msg =
+    document.getElementById("authMsg");
+
+  if (!msg) return;
+
+  msg.textContent = "";
+
+  if (!email || !password) {
+
+    msg.textContent =
+      "Email aur password bharo.";
+
+    return;
+  }
+
+  msg.textContent = "Logging in...";
+
+  try {
+
+    const { data, error } =
+      await db.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+    if (error) {
+
+      msg.textContent =
+        "Login failed: " + error.message;
+
+      return;
+    }
+
+    if (!data.user) {
+
+      msg.textContent =
+        "Login nahi hua.";
+
+      return;
+    }
+
+    msg.textContent =
+      "Login successful! ✅";
+
+    await checkCustomerSession();
+
+  } catch (error) {
+
+    console.error(error);
+
+    msg.textContent =
+      "Something went wrong.";
+
+  }
+}
+
+
+/* CUSTOMER SIGNUP */
+
+async function customerSignup() {
+
+  const email =
+    document.getElementById("customerEmail")
+      ?.value.trim();
+
+  const password =
+    document.getElementById("customerPassword")
+      ?.value;
+
+  const msg =
+    document.getElementById("authMsg");
+
+  if (!msg) return;
+
+  msg.textContent = "";
+
+  if (!email || !password) {
+
+    msg.textContent =
+      "Email aur password bharo.";
+
+    return;
+  }
+
+  if (password.length < 6) {
+
+    msg.textContent =
+      "Password kam se kam 6 characters ka hona chahiye.";
+
+    return;
+  }
+
+  msg.textContent =
+    "Account create ho raha hai...";
+
+  try {
+
+    const { data, error } =
+      await db.auth.signUp({
+        email: email,
+        password: password
+      });
+
+    if (error) {
+
+      msg.textContent =
+        "Signup failed: " + error.message;
+
+      return;
+    }
+
+    if (data.session) {
+
+      msg.textContent =
+        "Account created! ✅";
+
+      await checkCustomerSession();
+
+    } else {
+
+      msg.textContent =
+        "Account created! Email verify karke login karo.";
+
+    }
+
+  } catch (error) {
+
+    console.error(error);
+
+    msg.textContent =
+      "Something went wrong.";
+
+  }
+}
+
+
+/* CUSTOMER LOGOUT */
+
+async function customerLogout() {
+
+  const { error } =
+    await db.auth.signOut();
+
+  if (error) {
+
+    console.error(error);
+
+    return;
+  }
+
+  await checkCustomerSession();
+
+}
+
+
+/* MY ORDERS - TEMPORARY */
+
+function showMyOrders() {
+
+  alert(
+    "My Orders system next step me connect karenge."
+  );
+
+      }
