@@ -1319,41 +1319,6 @@ footer h4{
   }
 }
 
-/* ================= MOBILE ================= */
-
-@media (max-width:520px){
-
-  .topbar{
-    min-height:31px;
-    padding:7px 10px;
-    font-size:7px;
-  }
-
-  header{
-    padding:9px 4%;
-  }
-
-  .logo{
-    font-size:17px;
-  }
-
-  .hanger{
-    font-size:21px;
-  }
-
-  .logo small{
-    font-size:5px;
-    letter-spacing:2px;
-  }
-
-  .header-icons{
-    gap:5px;
-  }
-
-  .icon-btn{
-    width:34px;
-    height:34px;
-    fo
 /* ===== MOBILE HERO FIX ===== */
 @media (max-width: 800px) {
 
