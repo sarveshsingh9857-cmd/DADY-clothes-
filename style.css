@@ -1480,3 +1480,43 @@ footer h4{
     max-height:250px;
   }
 }
+/* ===== MOBILE PROMO BANNER FIX ONLY ===== */
+
+@media (max-width:800px){
+
+  .promo-section{
+    padding:28px 16px !important;
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:14px !important;
+  }
+
+  .promo-card{
+    min-height:180px !important;
+    height:180px !important;
+    padding:18px !important;
+    border-radius:15px !important;
+    overflow:hidden !important;
+  }
+
+  .promo-card img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:center !important;
+  }
+
+  .promo-card h3{
+    font-size:20px !important;
+    margin:5px 0 10px !important;
+  }
+
+  .promo-card small{
+    font-size:7px !important;
+  }
+
+  .promo-card a{
+    padding:8px 12px !important;
+    font-size:8px !important;
+  }
+}
