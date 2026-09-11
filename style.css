@@ -1520,3 +1520,64 @@ footer h4{
     font-size:8px !important;
   }
 }
+/* ===== LOWER 3 BANNERS - IMAGE FIX ===== */
+
+.promo-card{
+  height:220px !important;
+  min-height:220px !important;
+  position:relative !important;
+  overflow:hidden !important;
+}
+
+.promo-card img{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  object-fit:cover !important;
+  object-position:center !important;
+  z-index:1 !important;
+}
+
+.promo-card > div{
+  position:relative !important;
+  z-index:3 !important;
+}
+
+/* PHONE */
+@media (max-width:800px){
+
+  .promo-section{
+    padding:28px 16px !important;
+    grid-template-columns:repeat(3,1fr) !important;
+    gap:9px !important;
+  }
+
+  .promo-card{
+    height:210px !important;
+    min-height:210px !important;
+    padding:10px !important;
+    border-radius:12px !important;
+  }
+
+  .promo-card img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+  }
+
+  .promo-card h3{
+    font-size:12px !important;
+    margin:5px 0 8px !important;
+  }
+
+  .promo-card small{
+    font-size:6px !important;
+  }
+
+  .promo-card a{
+    padding:6px 8px !important;
+    font-size:6px !important;
+  }
+     }
