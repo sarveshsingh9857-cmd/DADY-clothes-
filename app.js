@@ -597,6 +597,146 @@ function hideCheckout() {
 PLACE COD ORDER
 ========================= */
 
+/* =========================
+PAYMENT METHOD
+========================= */
+
+let selectedPayment = "COD";
+
+
+function selectPayment(method) {
+
+  selectedPayment = method;
+
+  const codBtn =
+    document.getElementById("codBtn");
+
+  const onlineBtn =
+    document.getElementById("onlineBtn");
+
+  const onlineBox =
+    document.getElementById("onlinePaymentBox");
+
+  if (method === "ONLINE") {
+
+    onlineBox.style.display = "block";
+
+    onlineBtn.style.background = "#111";
+    onlineBtn.style.color = "#fff";
+    onlineBtn.style.borderColor = "#111";
+
+    codBtn.style.background = "#fff";
+    codBtn.style.color = "#111";
+    codBtn.style.borderColor = "#ddd";
+
+  } else {
+
+    onlineBox.style.display = "none";
+
+    codBtn.style.background = "#111";
+    codBtn.style.color = "#fff";
+    codBtn.style.borderColor = "#111";
+
+    onlineBtn.style.background = "#fff";
+    onlineBtn.style.color = "#111";
+    onlineBtn.style.borderColor = "#ddd";
+
+  }
+}
+
+
+/* =========================
+UPLOAD PAYMENT SCREENSHOT
+========================= */
+
+async function uploadPaymentScreenshot(userId, orderId) {
+
+  const input =
+    document.getElementById("paymentScreenshot");
+
+  const status =
+    document.getElementById("paymentUploadStatus");
+
+  const file =
+    input?.files?.[0];
+
+  if (!file) {
+    return null;
+  }
+
+  if (!file.type.startsWith("image/")) {
+
+    status.textContent =
+      "❌ Sirf image upload karo.";
+
+    return null;
+  }
+
+  if (file.size > 5 * 1024 * 1024) {
+
+    status.textContent =
+      "❌ Screenshot 5MB se chhota hona chahiye.";
+
+    return null;
+  }
+
+  status.textContent =
+    "⏳ Screenshot upload ho raha hai...";
+
+  const extension =
+    file.name
+      .split(".")
+      .pop()
+      .toLowerCase();
+
+  const filePath =
+    userId +
+    "/" +
+    orderId +
+    "-" +
+    Date.now() +
+    "." +
+    extension;
+
+  const { error } =
+    await db.storage
+      .from("payment-screenshots")
+      .upload(
+        filePath,
+        file,
+        {
+          cacheControl: "3600",
+          upsert: false
+        }
+      );
+
+  if (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "❌ Screenshot upload failed.";
+
+    return null;
+  }
+
+  status.textContent =
+    "✅ Screenshot uploaded.";
+
+  /*
+   * Bucket private hai, isliye public URL use nahi karenge.
+   * Admin screenshot ko Supabase authenticated storage
+   * se access karega.
+   */
+
+  return filePath;
+}
+
+
+/* =========================
+PLACE ORDER
+========================= */
+
 async function placeOrder() {
 
   const name =
@@ -619,99 +759,382 @@ async function placeOrder() {
   msg.textContent = "";
 
   if (!name || !phone || !address || !pin) {
+
     msg.textContent =
-      "Please fill all details.";
+      "Please fill all delivery details.";
+
     return;
   }
 
   if (!/^[0-9]{10}$/.test(phone)) {
+
     msg.textContent =
       "Enter a valid 10-digit mobile number.";
+
     return;
   }
 
   if (!/^[0-9]{6}$/.test(pin)) {
+
     msg.textContent =
       "Enter a valid 6-digit pincode.";
+
     return;
   }
 
-  const total = cart.reduce(
-    (sum, item) =>
-      sum +
-      Number(item.price) *
-      Number(item.qty),
-    0
-  );
+
+  /* =========================
+  LOGIN CHECK
+  ========================= */
+
+  const {
+    data: { session }
+  } = await db.auth.getSession();
+
+  if (!session || !session.user) {
+
+    msg.textContent =
+      "Order place karne ke liye pehle login karo.";
+
+    return;
+  }
+
+
+  /* =========================
+  CART TOTAL
+  ========================= */
+
+  const total =
+    cart.reduce(
+      (sum, item) =>
+        sum +
+        Number(item.price) *
+        Number(item.qty),
+      0
+    );
+
+
+  /* =========================
+  ORDER ID
+  ========================= */
 
   const orderId =
     "DC" +
     Date.now().toString().slice(-8);
 
+
   msg.textContent =
-    "Placing your order...";
+    "Please wait...";
 
-  try {
 
-    const {
-  data: { session }
-} = await db.auth.getSession();
+  /* =========================
+  COD
+  ========================= */
 
-if (!session || !session.user) {
-  msg.textContent =
-    "Order place karne ke liye pehle login karo.";
-  return;
-}
-const { error } = await db
-  .from("orders")
-  .insert({
-    order_id: orderId,
-    user_id: session.user.id,
-    name,
-    phone,
-    address,
-    pin,
-    total,
-    status: "Pending"
-  });
-    if (error) {
+  if (selectedPayment === "COD") {
+
+    try {
+
+      const { error } =
+        await db
+          .from("orders")
+          .insert({
+
+            order_id: orderId,
+
+            user_id:
+              session.user.id,
+
+            name,
+            phone,
+            address,
+            pin,
+            total,
+
+            status: "Pending",
+
+            payment_method: "COD",
+
+            payment_status: "Not Required",
+
+            utr_id: null,
+
+            payment_screenshot: null
+
+          });
+
+
+      if (error) {
+
+        console.error(error);
+
+        msg.textContent =
+          "Order save nahi hua.";
+
+        return;
+      }
+
+
+      msg.innerHTML = `
+        <strong>
+          Order placed successfully! 🎉
+        </strong>
+
+        <br><br>
+
+        Order ID:
+        ${escapeHTML(orderId)}
+
+        <br>
+
+        Payment:
+        Cash on Delivery
+      `;
+
+
+      cart = [];
+
+      saveCart();
+
+
+      setTimeout(() => {
+
+        hideCheckout();
+        closeCart();
+
+        [
+          "name",
+          "phone",
+          "address",
+          "pin"
+        ].forEach(id => {
+
+          const input =
+            document.getElementById(id);
+
+          if (input) {
+            input.value = "";
+          }
+
+        });
+
+      }, 3000);
+
+
+    } catch (error) {
+
       console.error(error);
+
       msg.textContent =
-        "Order save nahi hua. Please try again.";
+        "Something went wrong.";
+
+    }
+
+    return;
+  }
+
+
+  /* =========================
+  ONLINE PAYMENT
+  ========================= */
+
+  if (selectedPayment === "ONLINE") {
+
+    const utr =
+      document
+        .getElementById("utrId")
+        ?.value
+        .trim();
+
+    const screenshotInput =
+      document
+        .getElementById("paymentScreenshot");
+
+    const screenshot =
+      screenshotInput?.files?.[0];
+
+
+    if (!utr) {
+
+      msg.textContent =
+        "UTR / Transaction ID enter karo.";
+
       return;
     }
 
-    msg.innerHTML = `
-      <strong>Order placed successfully! 🎉</strong>
-      <br><br>
-      Order ID: ${escapeHTML(orderId)}
-      <br>
-      Payment: Cash on Delivery
-    `;
 
-    cart = [];
-    saveCart();
+    if (utr.length < 6) {
 
-    setTimeout(() => {
+      msg.textContent =
+        "Valid UTR / Transaction ID enter karo.";
 
-      hideCheckout();
-      closeCart();
+      return;
+    }
 
-      ["name","phone","address","pin"].forEach(id => {
-        const input = document.getElementById(id);
-        if (input) input.value = "";
-      });
 
-    }, 3000);
+    if (!screenshot) {
 
-  } catch (error) {
+      msg.textContent =
+        "Payment screenshot upload karo.";
 
-    console.error(error);
+      return;
+    }
+
 
     msg.textContent =
-      "Something went wrong. Please try again.";
+      "Payment screenshot upload ho raha hai...";
+
+
+    try {
+
+      const screenshotPath =
+        await uploadPaymentScreenshot(
+          session.user.id,
+          orderId
+        );
+
+
+      if (!screenshotPath) {
+
+        msg.textContent =
+          "Screenshot upload nahi hua.";
+
+        return;
+      }
+
+
+      const { error } =
+        await db
+          .from("orders")
+          .insert({
+
+            order_id: orderId,
+
+            user_id:
+              session.user.id,
+
+            name,
+            phone,
+            address,
+            pin,
+            total,
+
+            status:
+              "Payment Verification",
+
+            payment_method:
+              "ONLINE",
+
+            payment_status:
+              "Pending Verification",
+
+            utr_id:
+              utr,
+
+            payment_screenshot:
+              screenshotPath
+
+          });
+
+
+      if (error) {
+
+        console.error(error);
+
+        msg.textContent =
+          "Order save nahi hua.";
+
+        return;
+      }
+
+
+      msg.innerHTML = `
+        <strong>
+          Payment submitted successfully! ✅
+        </strong>
+
+        <br><br>
+
+        Order ID:
+        ${escapeHTML(orderId)}
+
+        <br>
+
+        Payment:
+        Online
+
+        <br><br>
+
+        Payment verification ke baad
+        order confirm hoga.
+      `;
+
+
+      cart = [];
+
+      saveCart();
+
+
+      setTimeout(() => {
+
+        hideCheckout();
+        closeCart();
+
+        [
+          "name",
+          "phone",
+          "address",
+          "pin",
+          "utrId"
+        ].forEach(id => {
+
+          const input =
+            document.getElementById(id);
+
+          if (input) {
+            input.value = "";
+          }
+
+        });
+
+
+        const screenshotInput =
+          document.getElementById(
+            "paymentScreenshot"
+          );
+
+        if (screenshotInput) {
+          screenshotInput.value = "";
+        }
+
+
+        const uploadStatus =
+          document.getElementById(
+            "paymentUploadStatus"
+          );
+
+        if (uploadStatus) {
+          uploadStatus.textContent = "";
+        }
+
+
+        selectedPayment = "COD";
+
+      }, 4000);
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      msg.textContent =
+        "Online payment order save nahi hua.";
+
+    }
+
   }
-}
+
+        }
 
 
 /* =========================
