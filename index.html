@@ -505,10 +505,10 @@
     </button>
 
     <div class="checkout-icon">
-      📦
+      🛍️
     </div>
 
-    <h2>Cash on Delivery</h2>
+    <h2>Checkout</h2>
 
     <p class="checkout-sub">
       Enter your delivery details
@@ -532,9 +532,128 @@
       placeholder="Pincode"
       type="number">
 
+    <!-- PAYMENT METHOD -->
+
+    <h3 style="margin-top:20px">
+      Payment Method
+    </h3>
+
+    <div style="
+      display:flex;
+      gap:10px;
+      margin:10px 0;
+    ">
+
+      <button
+        type="button"
+        id="codBtn"
+        onclick="selectPayment('COD')"
+        style="
+          flex:1;
+          padding:12px;
+          border:2px solid #111;
+          background:#111;
+          color:#fff;
+          border-radius:8px;
+        ">
+        💵 COD
+      </button>
+
+      <button
+        type="button"
+        id="onlineBtn"
+        onclick="selectPayment('ONLINE')"
+        style="
+          flex:1;
+          padding:12px;
+          border:2px solid #ddd;
+          background:#fff;
+          color:#111;
+          border-radius:8px;
+        ">
+        📱 ONLINE
+      </button>
+
+    </div>
+
+
+    <!-- ONLINE PAYMENT -->
+
+    <div
+      id="onlinePaymentBox"
+      style="
+        display:none;
+        border:1px solid #ddd;
+        border-radius:12px;
+        padding:15px;
+        margin-top:10px;
+        background:#fafafa;
+      ">
+
+      <h3 style="margin-top:0">
+        📱 Online Payment
+      </h3>
+
+      <p style="font-size:14px">
+        QR scan karke exact order amount pay karo.
+      </p>
+
+      <div style="text-align:center">
+
+        <img
+          src="https://kykdfhmumkttibcdcigg.supabase.co/storage/v1/object/public/payment-qr/dady_clothes_upi_qr.png"
+          alt="DADY CLOTHES UPI QR"
+          style="
+            width:230px;
+            max-width:100%;
+            border-radius:10px;
+            border:1px solid #ddd;
+          ">
+
+      </div>
+
+      <p style="
+        text-align:center;
+        font-weight:bold;
+        word-break:break-all;
+      ">
+        UPI ID:<br>
+        sarveshsingh9857@oksbi
+      </p>
+
+      <input
+        id="utrId"
+        placeholder="Enter UTR / Transaction ID">
+
+      <label style="
+        display:block;
+        margin-top:10px;
+        font-weight:bold;
+      ">
+        Payment Screenshot
+      </label>
+
+      <input
+        id="paymentScreenshot"
+        type="file"
+        accept="image/*">
+
+      <small style="color:#666">
+        Payment karne ke baad screenshot upload karo.
+      </small>
+
+      <p
+        id="paymentUploadStatus"
+        style="font-weight:bold">
+      </p>
+
+    </div>
+
+
     <button
       class="btn"
-      onclick="placeOrder()">
+      onclick="placeOrder()"
+      style="margin-top:15px">
       CONFIRM ORDER
     </button>
 
@@ -542,91 +661,7 @@
 
   </div>
 
-</div>
-
-
-<!-- ================= PROFILE ================= -->
-
-<div id="profileModal" class="modal">
-
-  <div class="checkout-box profile-box">
-
-    <button
-      class="close-btn"
-      onclick="closeProfile()">
-      ×
-    </button>
-
-    <div id="loginView">
-
-      <div class="checkout-icon">
-        👤
-      </div>
-
-      <h2>Welcome to DADY CLOTHES</h2>
-
-      <p class="checkout-sub">
-        Login or create your account
-      </p>
-
-      <input
-        id="customerEmail"
-        type="email"
-        placeholder="Email address">
-
-      <input
-        id="customerPassword"
-        type="password"
-        placeholder="Password">
-
-      <button
-        class="btn"
-        onclick="customerLogin()">
-        LOGIN
-      </button>
-
-      <button
-        class="btn create-account-btn"
-        onclick="customerSignup()">
-        CREATE ACCOUNT
-      </button>
-
-      <p id="authMsg"></p>
-
-    </div>
-
-
-    <div
-      id="profileView"
-      style="display:none">
-
-      <div class="checkout-icon">
-        👤
-      </div>
-
-      <h2>My Profile</h2>
-
-      <p id="profileEmail"></p>
-
-      <button
-        class="btn"
-        onclick="showMyOrders()">
-        📦 MY ORDERS
-      </button>
-
-      <button
-        class="btn logout-btn"
-        onclick="customerLogout()">
-        LOGOUT
-      </button>
-
-      <p id="profileMsg"></p>
-
-    </div>
-
-  </div>
-
-</div>
+        </div>
 
 
 <!-- ================= FOOTER ================= -->
