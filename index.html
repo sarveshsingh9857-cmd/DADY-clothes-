@@ -621,30 +621,26 @@
       font-size:16px;
       font-weight:bold;
     ">
-    📱 PAY ₹<span id="upiPayButtonAmount">0</span> VIA UPI
+  <button
+  type="button"
+  onclick="payViaUPI()"
+  style="
+    width:100%;
+    margin-top:15px;
+    padding:15px 18px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#6a11cb,#2575fc);
+    color:#fff;
+    font-size:17px;
+    font-weight:800;
+    letter-spacing:.3px;
+    box-shadow:0 6px 18px rgba(37,117,252,.35);
+    cursor:pointer;
+  ">
+  💳 PAY ₹<span id="upiPayButtonAmount">0</span> VIA UPI 🚀
   </button>
-
-  <p style="text-align:center;font-size:12px;color:#666;">
-    Button dabane par phone ka UPI app open hoga.
-  </p>
-
-  <hr>
-
-  <p style="font-size:14px">
-    Agar UPI app open na ho to QR scan karke payment karein.
-  </p>
-
-  <div style="text-align:center">
-    <img
-      src="https://kykdfhmumkttibcdcigg.supabase.co/storage/v1/object/public/payment-qr/dady_clothes_upi_qr.png"
-      alt="DADY CLOTHES UPI QR"
-      style="
-        width:230px;
-        max-width:100%;
-        border-radius:10px;
-        border:1px solid #ddd;
-      ">
-  </div>
+      
 
   <p style="text-align:center;font-weight:bold;word-break:break-all;">
     UPI ID:<br>
