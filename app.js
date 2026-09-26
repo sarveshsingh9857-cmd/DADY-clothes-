@@ -602,20 +602,13 @@ PAYMENT METHOD
 ========================= */
 
 let selectedPayment = "COD";
-
-
 function selectPayment(method) {
 
   selectedPayment = method;
 
-  const codBtn =
-    document.getElementById("codBtn");
-
-  const onlineBtn =
-    document.getElementById("onlineBtn");
-
-  const onlineBox =
-    document.getElementById("onlinePaymentBox");
+  const codBtn = document.getElementById("codBtn");
+  const onlineBtn = document.getElementById("onlineBtn");
+  const onlineBox = document.getElementById("onlinePaymentBox");
 
   if (method === "ONLINE") {
 
@@ -629,6 +622,8 @@ function selectPayment(method) {
     codBtn.style.color = "#111";
     codBtn.style.borderColor = "#ddd";
 
+    updateUPIAmount();
+
   } else {
 
     onlineBox.style.display = "none";
@@ -640,8 +635,61 @@ function selectPayment(method) {
     onlineBtn.style.background = "#fff";
     onlineBtn.style.color = "#111";
     onlineBtn.style.borderColor = "#ddd";
-
   }
+}
+function getCartTotal() {
+
+  return cart.reduce(
+    (sum, item) =>
+      sum +
+      Number(item.price) * Number(item.qty),
+    0
+  );
+}
+
+
+function updateUPIAmount() {
+
+  const amount = getCartTotal();
+
+  const upiAmount =
+    document.getElementById("upiAmount");
+
+  const upiButtonAmount =
+    document.getElementById("upiPayButtonAmount");
+
+  if (upiAmount) {
+    upiAmount.textContent = amount;
+  }
+
+  if (upiButtonAmount) {
+    upiButtonAmount.textContent = amount;
+  }
+
+  return amount;
+}
+
+
+function payViaUPI() {
+
+  const amount = updateUPIAmount();
+
+  if (!amount || amount <= 0) {
+    alert("Cart empty hai.");
+    return;
+  }
+
+  const upiId = "sarveshsingh9857@oksbi";
+  const payeeName = "DADY CLOTHES";
+
+  const upiLink =
+    "upi://pay" +
+    "?pa=" + encodeURIComponent(upiId) +
+    "&pn=" + encodeURIComponent(payeeName) +
+    "&am=" + encodeURIComponent(amount.toFixed(2)) +
+    "&cu=INR";
+
+  window.location.href = upiLink;
 }
 
 
