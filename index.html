@@ -575,75 +575,184 @@
       </button>
 
     </div>
-    <!-- ONLINE PAYMENT / UPI -->
-<div id="onlinePaymentBox" style="
+    <!-- ================= ONLINE PAYMENT / UPI ================= --><div id="onlinePaymentBox" style="
   display:none;
   margin-top:15px;
   padding:18px;
-  border-radius:16px;
-  background:linear-gradient(135deg,#f8f9ff,#eef2ff);
-  border:1px solid #dfe3ff;
+  border-radius:18px;
+  background:linear-gradient(135deg,#f4f0ff,#e9fff8);
+  border:1px solid #d9d9ff;
   text-align:center;
-">
-
-  <h3 style="margin:0 0 8px;color:#222;">
+">  <h3 style="
+    margin:0 0 6px;
+    color:#222;
+    font-size:21px;
+  ">
     💳 Pay via UPI
-  </h3>
-
-  <p style="margin:0 0 14px;color:#666;font-size:14px;">
-    Scan the QR code and pay securely
-  </p>
-
-  <!-- QR CODE -->
-  <div style="
-    background:white;
+  </h3>  <p style="
+    margin:0 0 15px;
+    color:#666;
+    font-size:14px;
+  ">
+    Scan the QR code or tap Pay Now
+  </p>  <!-- QR CODE -->  <div style="
+    background:#fff;
     padding:12px;
-    border-radius:14px;
+    border-radius:16px;
     display:inline-block;
-    box-shadow:0 5px 18px rgba(0,0,0,.12);
-  ">
-    <img
-      src="sandbox:/mnt/data/dady_clothes_upi_qr.png"
-      alt="UPI QR Code"
-      style="
-        width:190px;
-        height:190px;
-        object-fit:contain;
-        display:block;
-      "
-    >
-  </div>
+    box-shadow:0 6px 20px rgba(0,0,0,.12);
+  "><img
+  src="YOUR_QR_IMAGE_URL"
+  alt="DADY CLOTHES UPI QR Code"
+  style="
+    width:190px;
+    height:190px;
+    object-fit:contain;
+    display:block;
+  "
+>
 
-  <p style="
-    margin:14px 0 8px;
-    font-size:13px;
-    color:#777;
-  ">
-    Or pay directly using UPI
-  </p>
+  </div>  <!-- UPI ID -->  <div style="
+    margin-top:14px;
+    padding:11px;
+    background:#fff;
+    border-radius:12px;
+    border:1px solid #ddd;
+  "><small style="
+  display:block;
+  color:#777;
+  margin-bottom:4px;
+">
+  UPI ID
+</small>
 
-  <!-- UPI BUTTON -->
-  <a
-    href="upi://pay?pa=YOURUPIID@upi&pn=DADY%20CLOTHES"
-    style="
-      display:block;
-      width:100%;
-      box-sizing:border-box;
-      padding:14px 18px;
-      border-radius:12px;
-      background:linear-gradient(135deg,#6c5ce7,#00b894);
-      color:white;
-      text-decoration:none;
-      font-size:16px;
-      font-weight:700;
-      box-shadow:0 6px 15px rgba(108,92,231,.28);
-      margin-top:10px;
-    "
-  >
-    💸 Pay Now via UPI sarveshsingh9857@oksbi
-  </a>
+<b style="
+  font-size:15px;
+  color:#222;
+">
+  sarveshsingh9857@oksbi
+</b>
 
-</div>
+  </div>  <!-- PAY NOW --><a
+href="upi://pay?pa=sarveshsingh9857@oksbi&pn=DADY%20CLOTHES"
+style="
+display:block;
+width:100%;
+box-sizing:border-box;
+padding:14px 18px;
+border-radius:13px;
+background:linear-gradient(135deg,#6c5ce7,#00b894);
+color:#fff;
+text-decoration:none;
+font-size:16px;
+font-weight:700;
+box-shadow:0 7px 18px rgba(108,92,231,.25);
+margin-top:12px;
+"
+
+«»
+
+💸 Pay Now via UPI
+
+  </a>  <!-- PAYMENT PROOF -->  <div style="
+    margin-top:18px;
+    padding-top:16px;
+    border-top:1px solid #ddd;
+    text-align:left;
+  "><h4 style="
+  margin:0 0 6px;
+  font-size:17px;
+  color:#222;
+">
+  ✅ After Payment
+</h4>
+
+<p style="
+  margin:0 0 12px;
+  color:#666;
+  font-size:13px;
+">
+  Payment karne ke baad screenshot aur Transaction ID / UTR submit karein.
+</p>
+
+<!-- SCREENSHOT -->
+<label style="
+  display:block;
+  margin-bottom:6px;
+  font-weight:600;
+  color:#333;
+">
+  📸 Payment Screenshot
+</label>
+
+<input
+  id="paymentScreenshot"
+  type="file"
+  accept="image/*"
+  style="
+    width:100%;
+    box-sizing:border-box;
+    padding:10px;
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:10px;
+  "
+>
+
+<!-- UTR -->
+<label style="
+  display:block;
+  margin:14px 0 6px;
+  font-weight:600;
+  color:#333;
+">
+  🔢 Transaction ID / UTR
+</label>
+
+<input
+  id="transactionId"
+  type="text"
+  placeholder="Enter Transaction ID / UTR"
+  style="
+    width:100%;
+    box-sizing:border-box;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    outline:none;
+    font-size:14px;
+  "
+>
+
+<!-- SUBMIT -->
+<button
+  type="button"
+  onclick="submitOnlinePayment()"
+  style="
+    width:100%;
+    margin-top:14px;
+    padding:14px;
+    border:0;
+    border-radius:13px;
+    background:linear-gradient(135deg,#111,#333);
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+  "
+>
+  ✅ Submit Payment Proof
+</button>
+
+<p id="paymentProofStatus" style="
+  display:none;
+  margin:10px 0 0;
+  text-align:center;
+  font-size:13px;
+"></p>
+
+  </div></div>
+<!-- ================= END ONLINE PAYMENT ================= -->
 
 
 <!-- ================= FOOTER ================= -->
