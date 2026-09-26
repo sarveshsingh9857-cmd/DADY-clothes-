@@ -575,115 +575,75 @@
       </button>
 
     </div>
+    <!-- ONLINE PAYMENT / UPI -->
+<div id="onlinePaymentBox" style="
+  display:none;
+  margin-top:15px;
+  padding:18px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#f8f9ff,#eef2ff);
+  border:1px solid #dfe3ff;
+  text-align:center;
+">
 
-
-    <!-- ONLINE PAYMENT -->
-
-<div
-  id="onlinePaymentBox"
-  style="
-    display:none;
-    border:1px solid #ddd;
-    border-radius:12px;
-    padding:15px;
-    margin-top:10px;
-    background:#fafafa;
-  ">
-
-  <h3 style="margin-top:0">
-    📱 Online Payment
+  <h3 style="margin:0 0 8px;color:#222;">
+    💳 Pay via UPI
   </h3>
 
-  <div style="
-    text-align:center;
-    background:#111;
-    color:#fff;
-    padding:15px;
-    border-radius:10px;
-    margin:12px 0;
-  ">
-    <small>ORDER AMOUNT</small>
-    <div style="font-size:28px;font-weight:bold;margin-top:4px;">
-      ₹<span id="upiAmount">0</span>
-    </div>
-  </div>
-
-  <button
-    type="button"
-    onclick="payViaUPI()"
-    style="
-      width:100%;
-      padding:14px;
-      border:0;
-      border-radius:8px;
-      background:#111;
-      color:#fff;
-      font-size:16px;
-      font-weight:bold;
-    ">
-  <button
-  type="button"
-  onclick="payViaUPI()"
-  style="
-    width:100%;
-    margin-top:15px;
-    padding:15px 18px;
-    border:none;
-    border-radius:12px;
-    background:linear-gradient(135deg,#6a11cb,#2575fc);
-    color:#fff;
-    font-size:17px;
-    font-weight:800;
-    letter-spacing:.3px;
-    box-shadow:0 6px 18px rgba(37,117,252,.35);
-    cursor:pointer;
-  ">
-  💳 PAY ₹<span id="upiPayButtonAmount">0</span> VIA UPI 🚀
-  </button>
-      
-
-  <p style="text-align:center;font-weight:bold;word-break:break-all;">
-    UPI ID:<br>
-    sarveshsingh9857@oksbi
+  <p style="margin:0 0 14px;color:#666;font-size:14px;">
+    Scan the QR code and pay securely
   </p>
 
-  <label style="display:block;margin-top:15px;font-weight:bold;">
-    UTR / Transaction ID
-  </label>
-
-  <input
-    id="utrId"
-    placeholder="Payment ke baad UTR enter karein">
-
-  <label style="display:block;margin-top:10px;font-weight:bold;">
-    Payment Screenshot
-  </label>
-
-  <input
-    id="paymentScreenshot"
-    type="file"
-    accept="image/*">
-
-  <small style="color:#666">
-    Payment complete hone ke baad screenshot aur UTR zaroor submit karein.
-  </small>
-
-  <p id="paymentUploadStatus" style="font-weight:bold"></p>
-
-</div>
-
-    <button
-      class="btn"
-      onclick="placeOrder()"
-      style="margin-top:15px">
-      CONFIRM ORDER
-    </button>
-
-    <p id="msg"></p>
-
+  <!-- QR CODE -->
+  <div style="
+    background:white;
+    padding:12px;
+    border-radius:14px;
+    display:inline-block;
+    box-shadow:0 5px 18px rgba(0,0,0,.12);
+  ">
+    <img
+      src="sandbox:/mnt/data/dady_clothes_upi_qr.png"
+      alt="UPI QR Code"
+      style="
+        width:190px;
+        height:190px;
+        object-fit:contain;
+        display:block;
+      "
+    >
   </div>
 
-        </div>
+  <p style="
+    margin:14px 0 8px;
+    font-size:13px;
+    color:#777;
+  ">
+    Or pay directly using UPI
+  </p>
+
+  <!-- UPI BUTTON -->
+  <a
+    href="upi://pay?pa=YOURUPIID@upi&pn=DADY%20CLOTHES"
+    style="
+      display:block;
+      width:100%;
+      box-sizing:border-box;
+      padding:14px 18px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#6c5ce7,#00b894);
+      color:white;
+      text-decoration:none;
+      font-size:16px;
+      font-weight:700;
+      box-shadow:0 6px 15px rgba(108,92,231,.28);
+      margin-top:10px;
+    "
+  >
+    💸 Pay Now via UPI sarveshsingh9857@oksbi
+  </a>
+
+</div>
 
 
 <!-- ================= FOOTER ================= -->
