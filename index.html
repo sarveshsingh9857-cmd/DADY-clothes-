@@ -579,76 +579,102 @@
 
     <!-- ONLINE PAYMENT -->
 
-    <div
-      id="onlinePaymentBox"
-      style="
-        display:none;
-        border:1px solid #ddd;
-        border-radius:12px;
-        padding:15px;
-        margin-top:10px;
-        background:#fafafa;
-      ">
+<div
+  id="onlinePaymentBox"
+  style="
+    display:none;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:15px;
+    margin-top:10px;
+    background:#fafafa;
+  ">
 
-      <h3 style="margin-top:0">
-        📱 Online Payment
-      </h3>
+  <h3 style="margin-top:0">
+    📱 Online Payment
+  </h3>
 
-      <p style="font-size:14px">
-        QR scan karke exact order amount pay karo.
-      </p>
-
-      <div style="text-align:center">
-
-        <img
-          src="https://kykdfhmumkttibcdcigg.supabase.co/storage/v1/object/public/payment-qr/dady_clothes_upi_qr.png"
-          alt="DADY CLOTHES UPI QR"
-          style="
-            width:230px;
-            max-width:100%;
-            border-radius:10px;
-            border:1px solid #ddd;
-          ">
-
-      </div>
-
-      <p style="
-        text-align:center;
-        font-weight:bold;
-        word-break:break-all;
-      ">
-        UPI ID:<br>
-        sarveshsingh9857@oksbi
-      </p>
-
-      <input
-        id="utrId"
-        placeholder="Enter UTR / Transaction ID">
-
-      <label style="
-        display:block;
-        margin-top:10px;
-        font-weight:bold;
-      ">
-        Payment Screenshot
-      </label>
-
-      <input
-        id="paymentScreenshot"
-        type="file"
-        accept="image/*">
-
-      <small style="color:#666">
-        Payment karne ke baad screenshot upload karo.
-      </small>
-
-      <p
-        id="paymentUploadStatus"
-        style="font-weight:bold">
-      </p>
-
+  <div style="
+    text-align:center;
+    background:#111;
+    color:#fff;
+    padding:15px;
+    border-radius:10px;
+    margin:12px 0;
+  ">
+    <small>ORDER AMOUNT</small>
+    <div style="font-size:28px;font-weight:bold;margin-top:4px;">
+      ₹<span id="upiAmount">0</span>
     </div>
+  </div>
 
+  <button
+    type="button"
+    onclick="payViaUPI()"
+    style="
+      width:100%;
+      padding:14px;
+      border:0;
+      border-radius:8px;
+      background:#111;
+      color:#fff;
+      font-size:16px;
+      font-weight:bold;
+    ">
+    📱 PAY ₹<span id="upiPayButtonAmount">0</span> VIA UPI
+  </button>
+
+  <p style="text-align:center;font-size:12px;color:#666;">
+    Button dabane par phone ka UPI app open hoga.
+  </p>
+
+  <hr>
+
+  <p style="font-size:14px">
+    Agar UPI app open na ho to QR scan karke payment karein.
+  </p>
+
+  <div style="text-align:center">
+    <img
+      src="https://kykdfhmumkttibcdcigg.supabase.co/storage/v1/object/public/payment-qr/dady_clothes_upi_qr.png"
+      alt="DADY CLOTHES UPI QR"
+      style="
+        width:230px;
+        max-width:100%;
+        border-radius:10px;
+        border:1px solid #ddd;
+      ">
+  </div>
+
+  <p style="text-align:center;font-weight:bold;word-break:break-all;">
+    UPI ID:<br>
+    sarveshsingh9857@oksbi
+  </p>
+
+  <label style="display:block;margin-top:15px;font-weight:bold;">
+    UTR / Transaction ID
+  </label>
+
+  <input
+    id="utrId"
+    placeholder="Payment ke baad UTR enter karein">
+
+  <label style="display:block;margin-top:10px;font-weight:bold;">
+    Payment Screenshot
+  </label>
+
+  <input
+    id="paymentScreenshot"
+    type="file"
+    accept="image/*">
+
+  <small style="color:#666">
+    Payment complete hone ke baad screenshot aur UTR zaroor submit karein.
+  </small>
+
+  <p id="paymentUploadStatus" style="font-weight:bold"></p>
+
+</div>
 
     <button
       class="btn"
