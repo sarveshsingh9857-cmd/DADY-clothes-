@@ -573,9 +573,9 @@
         ">
         📱 ONLINE
       </button>
+<!-- ================= ONLINE PAYMENT / UPI ================= -->
 
-    </div>
-    <!-- ================= ONLINE PAYMENT / UPI ================= --><div id="onlinePaymentBox" style="
+<div id="onlinePaymentBox" style="
   display:none;
   margin-top:15px;
   padding:18px;
@@ -583,178 +583,224 @@
   background:linear-gradient(135deg,#f4f0ff,#e9fff8);
   border:1px solid #d9d9ff;
   text-align:center;
-">  <h3 style="
+">
+
+  <h3 style="
     margin:0 0 6px;
     color:#222;
     font-size:21px;
   ">
     💳 Pay via UPI
-  </h3>  <p style="
-    margin:0 0 15px;
+  </h3>
+
+  <p style="
+    margin:0 0 10px;
     color:#666;
     font-size:14px;
   ">
-    Scan the QR code or tap Pay Now
-  </p>  <!-- QR CODE -->  <div style="
+    Scan QR or tap Pay Now
+  </p>
+
+  <!-- TOTAL AMOUNT -->
+  <div style="
+    margin:10px auto 15px;
+    padding:12px;
+    background:#111;
+    color:#fff;
+    border-radius:12px;
+    max-width:260px;
+  ">
+    <small style="display:block;opacity:.75;">
+      Amount to Pay
+    </small>
+
+    <b id="upiAmount" style="
+      display:block;
+      font-size:24px;
+      margin-top:3px;
+    ">
+      ₹0
+    </b>
+  </div>
+
+  <!-- QR CODE -->
+  <div style="
     background:#fff;
     padding:12px;
     border-radius:16px;
     display:inline-block;
     box-shadow:0 6px 20px rgba(0,0,0,.12);
-  "><img
-  src="YOUR_QR_IMAGE_URL"
-  alt="DADY CLOTHES UPI QR Code"
-  style="
-    width:190px;
-    height:190px;
-    object-fit:contain;
-    display:block;
-  "
->
+  ">
 
-  </div>  <!-- UPI ID -->  <div style="
+    <img
+      id="upiQR"
+      src=""
+      alt="DADY CLOTHES UPI QR Code"
+      style="
+        width:190px;
+        height:190px;
+        object-fit:contain;
+        display:block;
+      "
+    >
+
+  </div>
+
+  <!-- UPI ID -->
+  <div style="
     margin-top:14px;
     padding:11px;
     background:#fff;
     border-radius:12px;
     border:1px solid #ddd;
-  "><small style="
-  display:block;
-  color:#777;
-  margin-bottom:4px;
-">
-  UPI ID
-</small>
+  ">
 
-<b style="
-  font-size:15px;
-  color:#222;
-">
-  sarveshsingh9857@oksbi
-</b>
+    <small style="
+      display:block;
+      color:#777;
+      margin-bottom:4px;
+    ">
+      UPI ID
+    </small>
 
-  </div>  <!-- PAY NOW --><a
-href="upi://pay?pa=sarveshsingh9857@oksbi&pn=DADY%20CLOTHES"
-style="
-display:block;
-width:100%;
-box-sizing:border-box;
-padding:14px 18px;
-border-radius:13px;
-background:linear-gradient(135deg,#6c5ce7,#00b894);
-color:#fff;
-text-decoration:none;
-font-size:16px;
-font-weight:700;
-box-shadow:0 7px 18px rgba(108,92,231,.25);
-margin-top:12px;
-"
+    <b style="
+      font-size:15px;
+      color:#222;
+    ">
+      sarveshsingh9857@oksbi
+    </b>
 
-«»
+  </div>
 
-💸 Pay Now via UPI
+  <!-- PAY NOW -->
+  <a
+    id="upiPayButton"
+    href="#"
+    onclick="openUPIPayment(event)"
+    style="
+      display:block;
+      width:100%;
+      box-sizing:border-box;
+      padding:14px 18px;
+      border-radius:13px;
+      background:linear-gradient(135deg,#6c5ce7,#00b894);
+      color:#fff;
+      text-decoration:none;
+      font-size:16px;
+      font-weight:700;
+      box-shadow:0 7px 18px rgba(108,92,231,.25);
+      margin-top:12px;
+    "
+  >
+    💸 Pay Now via UPI
+  </a>
 
-  </a>  <!-- PAYMENT PROOF -->  <div style="
+  <!-- PAYMENT PROOF -->
+  <div style="
     margin-top:18px;
     padding-top:16px;
     border-top:1px solid #ddd;
     text-align:left;
-  "><h4 style="
-  margin:0 0 6px;
-  font-size:17px;
-  color:#222;
-">
-  ✅ After Payment
-</h4>
+  ">
 
-<p style="
-  margin:0 0 12px;
-  color:#666;
-  font-size:13px;
-">
-  Payment karne ke baad screenshot aur Transaction ID / UTR submit karein.
-</p>
+    <h4 style="
+      margin:0 0 6px;
+      font-size:17px;
+      color:#222;
+    ">
+      ✅ After Payment
+    </h4>
 
-<!-- SCREENSHOT -->
-<label style="
-  display:block;
-  margin-bottom:6px;
-  font-weight:600;
-  color:#333;
-">
-  📸 Payment Screenshot
-</label>
+    <p style="
+      margin:0 0 12px;
+      color:#666;
+      font-size:13px;
+    ">
+      Payment karne ke baad screenshot aur Transaction ID / UTR submit karein.
+    </p>
 
-<input
-  id="paymentScreenshot"
-  type="file"
-  accept="image/*"
-  style="
-    width:100%;
-    box-sizing:border-box;
-    padding:10px;
-    background:#fff;
-    border:1px solid #ccc;
-    border-radius:10px;
-  "
->
+    <label style="
+      display:block;
+      margin-bottom:6px;
+      font-weight:600;
+      color:#333;
+    ">
+      📸 Payment Screenshot
+    </label>
 
-<!-- UTR -->
-<label style="
-  display:block;
-  margin:14px 0 6px;
-  font-weight:600;
-  color:#333;
-">
-  🔢 Transaction ID / UTR
-</label>
+    <input
+      id="paymentScreenshot"
+      type="file"
+      accept="image/*"
+      style="
+        width:100%;
+        box-sizing:border-box;
+        padding:10px;
+        background:#fff;
+        border:1px solid #ccc;
+        border-radius:10px;
+      "
+    >
 
-<input
-  id="transactionId"
-  type="text"
-  placeholder="Enter Transaction ID / UTR"
-  style="
-    width:100%;
-    box-sizing:border-box;
-    padding:13px;
-    border:1px solid #ccc;
-    border-radius:10px;
-    outline:none;
-    font-size:14px;
-  "
->
+    <label style="
+      display:block;
+      margin:14px 0 6px;
+      font-weight:600;
+      color:#333;
+    ">
+      🔢 Transaction ID / UTR
+    </label>
 
-<!-- SUBMIT -->
-<button
-  type="button"
-  onclick="submitOnlinePayment()"
-  style="
-    width:100%;
-    margin-top:14px;
-    padding:14px;
-    border:0;
-    border-radius:13px;
-    background:linear-gradient(135deg,#111,#333);
-    color:#fff;
-    font-size:16px;
-    font-weight:700;
-    cursor:pointer;
-  "
->
-  ✅ Submit Payment Proof
-</button>
+    <input
+      id="transactionId"
+      type="text"
+      placeholder="Enter Transaction ID / UTR"
+      style="
+        width:100%;
+        box-sizing:border-box;
+        padding:13px;
+        border:1px solid #ccc;
+        border-radius:10px;
+        outline:none;
+        font-size:14px;
+      "
+    >
 
-<p id="paymentProofStatus" style="
-  display:none;
-  margin:10px 0 0;
-  text-align:center;
-  font-size:13px;
-"></p>
+    <button
+      type="button"
+      onclick="submitOnlinePayment()"
+      style="
+        width:100%;
+        margin-top:14px;
+        padding:14px;
+        border:0;
+        border-radius:13px;
+        background:linear-gradient(135deg,#111,#333);
+        color:#fff;
+        font-size:16px;
+        font-weight:700;
+        cursor:pointer;
+      "
+    >
+      ✅ Submit Payment Proof
+    </button>
 
-  </div></div>
+    <p id="paymentProofStatus" style="
+      display:none;
+      margin:10px 0 0;
+      text-align:center;
+      font-size:13px;
+    "></p>
+
+  </div>
+
+</div>
+
 <!-- ================= END ONLINE PAYMENT ================= -->
 
 
+
+      
 <!-- ================= FOOTER ================= -->
 
 <footer id="contact">
@@ -871,3 +917,143 @@ margin-top:12px;
 
 </body>
   </html>
+<script>
+/* ================= DADY CLOTHES UPI FIX ================= */
+
+const DADY_UPI_ID = "sarveshsingh9857@oksbi";
+const DADY_UPI_NAME = "DADY CLOTHES";
+
+function getCurrentCartAmount() {
+  const totalElement = document.getElementById("total");
+
+  if (!totalElement) return 0;
+
+  const text = totalElement.innerText
+    .replace(/[₹,\s]/g, "")
+    .trim();
+
+  const amount = parseFloat(text);
+
+  return Number.isFinite(amount) ? amount : 0;
+}
+
+
+function updateUPIPayment() {
+
+  const amount = getCurrentCartAmount();
+
+  const amountBox = document.getElementById("upiAmount");
+  const qr = document.getElementById("upiQR");
+  const payButton = document.getElementById("upiPayButton");
+
+  if (!amountBox || !qr || !payButton) return;
+
+  amountBox.innerText = "₹" + amount.toFixed(2);
+
+  const upiURL =
+    "upi://pay" +
+    "?pa=" + encodeURIComponent(DADY_UPI_ID) +
+    "&pn=" + encodeURIComponent(DADY_UPI_NAME) +
+    "&am=" + encodeURIComponent(amount.toFixed(2)) +
+    "&cu=INR";
+
+  /* Dynamic QR with exact cart amount */
+  qr.src =
+    "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
+    encodeURIComponent(upiURL);
+
+  payButton.dataset.upi = upiURL;
+}
+
+
+/* COD / ONLINE selection */
+window.selectPayment = function(method) {
+
+  const codBtn = document.getElementById("codBtn");
+  const onlineBtn = document.getElementById("onlineBtn");
+  const onlineBox = document.getElementById("onlinePaymentBox");
+
+  if (method === "ONLINE") {
+
+    codBtn.style.background = "#fff";
+    codBtn.style.color = "#111";
+    codBtn.style.border = "2px solid #ddd";
+
+    onlineBtn.style.background =
+      "linear-gradient(135deg,#6c5ce7,#00b894)";
+    onlineBtn.style.color = "#fff";
+    onlineBtn.style.border = "2px solid #6c5ce7";
+
+    onlineBox.style.display = "block";
+
+    updateUPIPayment();
+
+  } else {
+
+    onlineBtn.style.background = "#fff";
+    onlineBtn.style.color = "#111";
+    onlineBtn.style.border = "2px solid #ddd";
+
+    codBtn.style.background = "#111";
+    codBtn.style.color = "#fff";
+    codBtn.style.border = "2px solid #111";
+
+    onlineBox.style.display = "none";
+  }
+};
+
+
+/* Pay Now */
+window.openUPIPayment = function(event) {
+
+  event.preventDefault();
+
+  const amount = getCurrentCartAmount();
+
+  if (!amount || amount <= 0) {
+    alert("Order amount nahi mila. Please cart mein product add karein.");
+    return;
+  }
+
+  const upiURL =
+    "upi://pay" +
+    "?pa=" + encodeURIComponent(DADY_UPI_ID) +
+    "&pn=" + encodeURIComponent(DADY_UPI_NAME) +
+    "&am=" + encodeURIComponent(amount.toFixed(2)) +
+    "&cu=INR";
+
+  window.location.href = upiURL;
+};
+
+
+/* Cart amount change hone par UPI amount update */
+const originalOpenCart = window.openCart;
+
+if (typeof originalOpenCart === "function") {
+
+  window.openCart = function() {
+
+    originalOpenCart.apply(this, arguments);
+
+    setTimeout(updateUPIPayment, 300);
+
+  };
+
+}
+
+
+/* Checkout open hone ke baad amount update */
+const originalCheckout = window.checkout;
+
+if (typeof originalCheckout === "function") {
+
+  window.checkout = function() {
+
+    originalCheckout.apply(this, arguments);
+
+    setTimeout(updateUPIPayment, 300);
+
+  };
+
+}
+</script>
