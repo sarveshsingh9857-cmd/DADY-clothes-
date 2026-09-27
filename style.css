@@ -1581,3 +1581,40 @@ footer h4{
     font-size:6px !important;
   }
      }
+/* --- 1. POPUP KO CENTER MEIN AUR SIZES DECENT KARNE KE LIYE --- */
+.checkout-modal, 
+[class*="checkout"], 
+[id*="checkout"] {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  
+  width: 90% !important;
+  max-width: 380px !important;  /* Lamba pan kam karne ke liye width set ki hai */
+  max-height: 85vh !important;  /* Screen se bahar na jaaye */
+  overflow-y: auto !important;   /* Scrollbar ki zaroorat pade toh modal ke andar bane */
+  
+  background-color: #ffffff !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+  z-index: 99999 !important;     /* Screen ke sabse upar rahega */
+  padding: 15px !important;
+  margin: 0 !important;
+}
+
+/* Modal ke andar ka QR Code ka size sahi karne ke liye */
+.checkout-modal img, 
+[class*="checkout"] img {
+  max-width: 150px !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  display: block !important;
+}
+
+/* --- 2. POPUP KE ANDAR APNI AAHI FOOTER KO HIDE KARNE KE LIYE --- */
+.checkout-modal footer,
+.checkout-modal .footer,
+[class*="checkout"] footer {
+  display: none !important;
+}
