@@ -1618,3 +1618,33 @@ footer h4{
 [class*="checkout"] footer {
   display: none !important;
 }
+/* ================= CHECKOUT / UPI FIX ================= */
+
+#checkout {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 7000 !important;
+  align-items: center;
+  justify-content: center;
+}
+
+#checkout .checkout-box {
+  position: relative !important;
+  z-index: 7001 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+#checkout .checkout-sub {
+  position: static !important;
+  display: block !important;
+  z-index: auto !important;
+  background: transparent !important;
+  transform: none !important;
+}
+
+#onlinePaymentBox {
+  position: relative !important;
+  z-index: 1 !important;
+  overflow: visible !important;
+}
